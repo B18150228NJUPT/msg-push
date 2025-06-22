@@ -1,0 +1,11 @@
+dubbo:
+  application:
+    logger: slf4j
+    name: MsgPushApplication
+  registry:
+#    address: zookeeper://${zookeeper.address:127.0.0.1}:2181
+    address: nacos://${nacos.address:10.7.77.108}:8848
+
+  protocol:
+    name: tri
+    port: 50051
