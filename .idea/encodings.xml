@@ -3,6 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/msg-push/caller/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/msg-push/caller/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/msg-push/msg-flink/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/msg-push/msg-flink/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/msg-push/msg-push-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/msg-push/msg-push-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/msg-push/msg-push-service/src/main/java" charset="UTF-8" />

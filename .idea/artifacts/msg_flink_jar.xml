@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="msg-flink:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/msg_flink_jar</output-path>
+    <root id="archive" name="msg-flink.jar">
+      <element id="module-output" name="msg-flink" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../maven_repo/com/java3y/austin/austin-common/0.0.1-SNAPSHOT/austin-common-0.0.1-SNAPSHOT.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../maven_repo/com/java3y/austin/austin-support/0.0.1-SNAPSHOT/austin-support-0.0.1-SNAPSHOT.jar" path-in-jar="/" />
+      <element id="directory" name="BOOT-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: io.lettuce:lettuce-core:6.1.10.RELEASE" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

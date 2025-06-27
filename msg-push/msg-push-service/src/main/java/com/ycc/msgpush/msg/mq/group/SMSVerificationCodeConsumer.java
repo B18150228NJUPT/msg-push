@@ -1,0 +1,30 @@
+package com.ycc.msgpush.msg.mq.group;
+
+import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
+import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
+import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
+import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
+import org.apache.rocketmq.common.message.MessageExt;
+
+import java.util.List;
+
+public class SMSVerificationCodeConsumer {
+    public static void main(String[] args) throws Exception {
+        // 创建消费者
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("SMSConsumerGroup");
+        consumer.setNamesrvAddr("127.0.0.1:9876");
+        consumer.subscribe("SMSVerificationCodeTopic", "*");
+        consumer.registerMessageListener(new MessageListenerConcurrently() {
+            @Override
+            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
+                for (MessageExt message : msgs) {
+                    // 处理短信验证码消息的逻辑
+                    System.out.println("Received SMS verification code message: " + new String(message.getBody()));
+                }
+                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+            }
+        });
+        consumer.start();
+    }
+}
+

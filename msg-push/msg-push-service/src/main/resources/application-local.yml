@@ -1,0 +1,12 @@
+#-ea -Dspring.profiles.active=local
+i18n:
+  enabled: false
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    com.*: DEBUG
+
+server:
+  port: 8762
