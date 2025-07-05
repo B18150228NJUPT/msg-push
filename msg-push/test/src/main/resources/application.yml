@@ -1,0 +1,30 @@
+nacos:
+  config:
+    server-addr: ${austin.nacos.address:localhost}:8848
+    type: yaml
+    data-id: test-conf.yml
+    auto-refresh: true
+    username: ${austin.nacos.username:nacos}
+    password: ${austin.nacos.password:nacos}
+    group: DEFAULT_GROUP
+    bootstrap:
+        enable: true
+        log-enabled: true
+        log-level: debug
+
+spring:
+#  config:
+#    import:
+#      nacos:
+#        config:
+#          server-addr: 127.0.0.1:8848 # Nacos服务器地址
+#          #        namespace: your-namespace-id # 命名空间ID（可选）
+#          group: DEFAULT_GROUP # 组名，默认为DEFAULT_GROUP
+  application:
+    name: test # 应用名称，对应Nacos中的DataId
+#  cloud:
+#    nacos:
+#      config:
+#        server-addr: 127.0.0.1:8848 # Nacos服务器地址
+##        namespace: your-namespace-id # 命名空间ID（可选）
+#        group: DEFAULT_GROUP # 组名，默认为DEFAULT_GROUP

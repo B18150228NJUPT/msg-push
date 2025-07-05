@@ -10,6 +10,7 @@
         <module name="caller" />
         <module name="msg-flink" />
         <module name="msg-push-service" />
+        <module name="test" />
         <module name="msg-push-api" />
       </profile>
     </annotationProcessing>
