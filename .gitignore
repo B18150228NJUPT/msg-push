@@ -3,4 +3,4 @@
 *.log.gz
 /target/
 /out/
-.tmp
+*.tmp
