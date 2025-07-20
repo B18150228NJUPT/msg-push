@@ -3,7 +3,52 @@ dubbo:
     logger: slf4j
     name: CallerAppllociation
   registry:
-    address: zookeeper://${zookeeper.address:127.0.0.1}:2181
+    #    address: zookeeper://${zookeeper.address:127.0.0.1}:2181
+    address: nacos://${nacos.address:localhost}:8848?username=nacos&password=nacos
+  config-center:
+    address: nacos://${nacos.address:localhost}:8848?username=nacos&password=nacos
   protocol:
     name: tri
-    port: 50051
+    port: 50052
+
+nacos:
+  config:
+    server-addr: ${nacos.address:localhost}:8848
+
+spring:
+  application:
+    name: caller-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/austin?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&allowMultiQueries=true
+    username: root
+    password: root123_A
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: my_test_tx_group
+  registry:
+    type: nacos
+    nacos:
+      server-addr: ${nacos.config.server-addr}
+      group: SEATA_GROUP
+  config:
+    type: nacos
+    nacos:
+      server-addr: ${nacos.config.server-addr}
+      group: SEATA_GROUP
+  service:
+#    default:
+#      grouplist: localhost:8092
+    #    vgroup-mapping:
+    #      my_test_tx_group: default  # 与服务端映射一致
+#    grouplist:
+#      default: localhost:8092
+  client:
+    rm:
+      report-success-enable: true
+    tm:
+      commit-retry-count: 5
+      rollback-retry-count: 5
