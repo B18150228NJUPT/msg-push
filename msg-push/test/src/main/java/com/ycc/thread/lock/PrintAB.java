@@ -1,4 +1,4 @@
-package com.ycc.thread.threadlocal;
+package com.ycc.thread.lock;
 
 public class PrintAB {
     // 共享锁对象（必须是同一个对象）

@@ -1,4 +1,4 @@
-package com.ycc.thread.threadlocal;
+package com.ycc.thread.lock;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantReadWriteLock;

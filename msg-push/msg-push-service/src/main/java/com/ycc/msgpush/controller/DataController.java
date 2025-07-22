@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * 获取数据接口（全链路追踪)
  *
@@ -25,8 +27,9 @@ public class DataController {
 
     @PostMapping("/message")
     @ApiOperation("/获取【72小时】发送消息的全链路数据")
-    public Object getMessageData(@RequestBody DataParam dataParam) {
+    public Object getMessageData(@RequestBody DataParam dataParam) throws InterruptedException {
 //        return dataService.getTraceMessageInfo(dataParam.getMessageId());
+        TimeUnit.SECONDS.sleep(1);
         return null;
     }
 

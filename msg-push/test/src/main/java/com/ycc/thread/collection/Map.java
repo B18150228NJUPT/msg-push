@@ -1,7 +1,6 @@
-package com.ycc.thread.threadlocal;
+package com.ycc.thread.collection;
 
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 /**
  * @author chengcheng.yan@youhualin.com
