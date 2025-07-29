@@ -4,16 +4,12 @@ import com.ycc.msgpush.trace.DataParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * 获取数据接口（全链路追踪)
- *
  */
 @Slf4j
 //@AustinAspect
@@ -25,9 +21,9 @@ public class DataController {
 //    @Autowired
 //    private DataService dataService;
 
-    @PostMapping("/message")
+    @PostMapping("/message/{id}/test")
     @ApiOperation("/获取【72小时】发送消息的全链路数据")
-    public Object getMessageData(@RequestBody DataParam dataParam) throws InterruptedException {
+    public Object getMessageData(@RequestBody DataParam dataParam, @PathVariable("id") String id) throws InterruptedException {
 //        return dataService.getTraceMessageInfo(dataParam.getMessageId());
         TimeUnit.SECONDS.sleep(1);
         return null;
