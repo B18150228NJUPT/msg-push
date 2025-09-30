@@ -20,7 +20,7 @@ services:
   austin-redis:
     image: redis:3.2
     ports:
-      - "6379:6379"
+      - 16379:6379
     restart: always
     container_name: austin-redis
     volumes:
@@ -172,6 +172,28 @@ services:
     depends_on:
       - austin-mysql
       - austin-nacos
+    networks:
+      - app
+  apollo-quick-start:
+    image: nobodyiam/apollo-quick-start
+    container_name: apollo-quick-start
+    #    depends_on:
+    #      apollo-db:
+    #        condition: service_healthy
+    ports:
+      - "8080:8080"
+      - "8070:8070"
+      - "8090:8090"
+    #    links:
+    #      - apollo-db
+    environment:
+      #JAVA_OPTS: '-Xms100m -Xmx1000m -Xmn100m -Xss256k -XX:MetaspaceSize=10m -XX:MaxMetaspaceSize=250m'
+      APOLLO_CONFIG_DB_USERNAME: 'root'
+      APOLLO_CONFIG_DB_PASSWORD: 'root123_A'
+      APOLLO_CONFIG_DB_URL: 'jdbc:mysql://austin-mysql:13307/ApolloConfigDB?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&allowMultiQueries=true'
+      APOLLO_PORTAL_DB_USERNAME: 'root'
+      APOLLO_PORTAL_DB_PASSWORD: 'root123_A'
+      APOLLO_PORTAL_DB_URL: 'jdbc:mysql://austin-mysql:13307/ApolloPortalDB?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&allowMultiQueries=true'
     networks:
       - app
 networks:

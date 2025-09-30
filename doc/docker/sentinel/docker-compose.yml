@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # Sentinel Dashboard服务
+  sentinel-dashboard:
+    image: bladex/sentinel-dashboard:1.8.5
+    container_name: sentinel-dashboard
+    restart: always
+    ports:
+      - "18082:8080"  # Sentinel Dashboard默认端口
+      - "18719:8719"
+    environment:
+      # 配置JVM参数，可根据需要调整内存大小
+      - JAVA_OPTS=-Xms512m -Xmx512m
+      # 配置控制台用户名和密码（1.8.0+版本支持）
+      - sentinel.dashboard.auth.username=admin
+      - sentinel.dashboard.auth.password=admin
+      # 关闭登录验证（不推荐生产环境）
+      # - sentinel.dashboard.auth.enabled=false
+      # 配置控制台端口，默认8080
+#      - server.port=8080
+    volumes:
+      # 挂载日志目录
+      - ./sentinel-logs:/root/logs/csp
+    networks:
+      - sentinel-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  sentinel-network:
+    driver: bridge

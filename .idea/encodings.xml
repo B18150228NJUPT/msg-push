@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/midWare-learn/dependencies-all/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/midWare-learn/dependencies-all/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/midWare-learn/eureka-sever/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/midWare-learn/eureka-sever/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/midWare-learn/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/midWare-learn/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/midWare-learn/widWare-apollo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/midWare-learn/widWare-apollo/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/msg-push/caller/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/msg-push/caller/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/msg-push/msg-flink/src/main/java" charset="UTF-8" />

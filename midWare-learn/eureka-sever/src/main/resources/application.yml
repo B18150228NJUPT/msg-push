@@ -1,0 +1,24 @@
+server:
+  port: 8761  # Eureka 服务默认端口
+
+eureka:
+  instance:
+    hostname: localhost  # 服务主机名（集群部署时需修改为实际主机名或 IP）
+  client:
+    # 是否注册到自身（单节点部署时设为 false，集群部署时设为 true）
+    registerWithEureka: false
+    # 是否从自身拉取注册信息（单节点部署时设为 false）
+    fetchRegistry: false
+    serviceUrl:
+      # 注册中心地址（集群部署时填写其他节点的地址，用逗号分隔）
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    # 关闭自我保护模式（生产环境建议开启，开发环境可关闭）
+    enableSelfPreservation: false
+    # 清理无效节点的间隔时间（毫秒）
+    evictionIntervalTimerInMs: 60000
+
+# 应用名称
+spring:
+  application:
+    name: eureka-server

@@ -1,0 +1,1805 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.ycc</groupId>
+        <artifactId>midWare-learn</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <artifactId>dependencies-all</artifactId>
+
+    <properties>
+        <jsoup.version>1.14.3</jsoup.version>
+        <tio.version>3.7.5.v20211028-RELEASE</tio.version>
+        <framework.version>6.0.0-SNAPSHOT</framework.version>
+        <apollo.version>1.7.0</apollo.version>
+        <transmittable.version>2.12.2</transmittable.version>
+        <commons-net.version>3.6</commons-net.version>
+        <netty-socketio.version>1.7.14</netty-socketio.version>
+        <bcprov.version>1.63</bcprov.version>
+        <spring-cloud-alibaba.version>2.1.3.RELEASE</spring-cloud-alibaba.version>
+        <pf4j-version>3.1.0</pf4j-version>
+        <jackson.version>2.10.0</jackson.version>
+        <jackson-databind.version>2.10.5.1</jackson-databind.version>
+        <hutool-version>5.8.18</hutool-version>
+        <okhttp3.version>3.10.0</okhttp3.version>
+        <rocksdbjni.version>6.22.1</rocksdbjni.version>
+        <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
+        <spring-cloud.version>Greenwich.SR6</spring-cloud.version>
+        <feign-core.version>10.4.0-SNAPSHOT</feign-core.version>
+        <elasticsearch-rest-version>6.2.2</elasticsearch-rest-version>
+        <elasticsearch-rest-version7>7.16.1</elasticsearch-rest-version7>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <apache.commons.version>3.4</apache.commons.version>
+        <apache.common.collections>3.2.2</apache.common.collections>
+        <junit.version>4.12</junit.version>
+        <java.version>1.8</java.version>
+        <jose4j.version>0.6.4</jose4j.version>
+        <javax.persistence.version>1.0</javax.persistence.version>
+        <javax.validation.version>1.1.0.Final</javax.validation.version>
+        <guava.version>20.0</guava.version>
+        <lombok.version>1.18.4</lombok.version>
+        <springfox.version>2.8.0</springfox.version>
+        <druid.version>1.2.6</druid.version>
+        <argLine>-Xmx1G</argLine>
+        <jz.version>1.1.1</jz.version>
+        <rocketmq.version>4.5.1</rocketmq.version>
+        <cat-client.version>3.1.0.0-SNAPSHOT</cat-client.version>
+        <mica.mqtt.version>1.2.10</mica.mqtt.version>
+        <!--plugin version -->
+        <alipay-sdk-version>4.8.10.ALL</alipay-sdk-version>
+        <build-helper-maven-plugin.version>1.10</build-helper-maven-plugin.version>
+        <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
+        <git-commit-id-plugin.version>2.2.3</git-commit-id-plugin.version>
+        <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+        <maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
+        <maven-clean-plugin.version>2.6.1</maven-clean-plugin.version>
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <maven-dependency-plugin.version>2.10</maven-dependency-plugin.version>
+        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
+        <maven-enforcer-plugin.version>1.4</maven-enforcer-plugin.version>
+        <maven-failsafe-plugin.version>2.18.1</maven-failsafe-plugin.version>
+        <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+        <maven-invoker-plugin.version>1.10</maven-invoker-plugin.version>
+        <maven-help-plugin.version>2.2</maven-help-plugin.version>
+        <maven-jar-plugin.version>2.6</maven-jar-plugin.version>
+        <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
+        <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
+        <maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
+        <maven-site-plugin.version>3.5.1</maven-site-plugin.version>
+        <maven-source-plugin.version>2.4</maven-source-plugin.version>
+        <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
+        <maven-war-plugin.version>2.6</maven-war-plugin.version>
+        <versions-maven-plugin.version>2.2</versions-maven-plugin.version>
+        <logback.version>1.2.9</logback.version>
+        <slf4j.version>1.7.32</slf4j.version>
+        <com.alicp.jetcache.jetcache-starter-redis>2.5.11</com.alicp.jetcache.jetcache-starter-redis>
+        <jwt.version>0.10.5</jwt.version>
+        <elastic-job.version>2.1.6-alpha</elastic-job.version>
+        <curator.client.version>2.11.1</curator.client.version>
+        <quartz.version>2.2.1</quartz.version>
+        <bootstrap-ui.version>1.9.6</bootstrap-ui.version>
+        <hessian.version>3.1.5</hessian.version>
+        <dubbo.version>2.7.3</dubbo.version>
+        <bboss-elasticsearch.version>6.2.0</bboss-elasticsearch.version>
+        <elastic.new.version>6.1.8</elastic.new.version>
+        <xxl.job.version>2.1.0</xxl.job.version>
+        <fastjson.version>1.2.83</fastjson.version>
+        <kafka.version>2.1.1</kafka.version>
+        <zookeeper.version>3.4.10</zookeeper.version>
+        <disruptor.version>3.4.1</disruptor.version>
+        <nacos-client.version>1.4.2</nacos-client.version>
+        <commons.io.version>2.5</commons.io.version>
+        <WxJava.version>3.6.0</WxJava.version>
+        <mzlion-core.version>1.1.2</mzlion-core.version>
+        <knife4j.version>2.0.4</knife4j.version>
+        <lettuce.version>6.0.3.RELEASE</lettuce.version>
+        <jedis.version>2.9.0</jedis.version>
+        <yto-security.version>1.0.2</yto-security.version>
+        <easy-rules.version>4.1.0</easy-rules.version>
+        <jasypt.version>1.9.3</jasypt.version>
+        <jasypt-springboot.verion>2.1.22</jasypt-springboot.verion>
+        <log4j.version>2.18.0</log4j.version>
+        <mqcloud.version>1.9.26</mqcloud.version>
+        <cachecloud-jedis.version>1.0.7-SNAPSHOT</cachecloud-jedis.version>
+        <easyexcel.version>3.2.1</easyexcel.version>
+        <dubbo-spring-boot-starter.vserion>2.7.3</dubbo-spring-boot-starter.vserion>
+        <yto-core-framework.version>5.2.0-SNAPSHOT</yto-core-framework.version>
+        <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
+        <plexus.container.default>1.6</plexus.container.default>
+        <clickhouse.version>2.2-stable</clickhouse.version>
+        <hutoll.version>5.8.18</hutoll.version>
+        <pinyin.version>2.5.1</pinyin.version>
+        <mybatis-plus-boot-starter.version>3.4.3.4</mybatis-plus-boot-starter.version>
+        <dynamic-datasource-starter.version>3.5.0</dynamic-datasource-starter.version>
+        <mybatis.version>3.5.9</mybatis.version>
+        <reactor-netty.version>0.8.13.RELEASE</reactor-netty.version>
+        <jsqlparser.version>4.2</jsqlparser.version>
+        <mybatis-spring-boot.version>2.1.4</mybatis-spring-boot.version>
+        <pagehelper-starter.version>1.2.9</pagehelper-starter.version>
+        <pagehelper.version>5.1.10</pagehelper.version>
+        <mybatis-spring.version>2.0.6</mybatis-spring.version>
+        <dynamictp.version>1.1.5</dynamictp.version>
+        <lombok.version>1.18.4</lombok.version>
+    </properties>
+    <dependencyManagement>
+
+        <dependencies>
+            <!--<dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <scope>test</scope>
+                <version>${spring-boot-configuration-processor.version}</version>
+            </dependency>-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-configuration-processor</artifactId>
+                <version>${spring-boot.version}</version>
+                <optional>true</optional>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <scope>compile</scope>
+                <version>${lombok.version}</version>
+            </dependency>
+            <!--oracle start -->
+            <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>ojdbc14</artifactId>
+                <version>10.2.0.4.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${easyexcel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-to-slf4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <!-- Disruptor它是一个开源的并发框架,并获得2011 Duke’s 程序框架创新奖,能够在无锁的情况下实现网络的Queue并发操作。 -->
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>${disruptor.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jasypt</groupId>
+                <artifactId>jasypt</artifactId>
+                <version>${jasypt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.ulisesbocchio</groupId>
+                <artifactId>jasypt-spring-boot</artifactId>
+                <version>${jasypt-springboot.verion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.jsqlparser</groupId>
+                <artifactId>jsqlparser</artifactId>
+                <version>${jsqlparser.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.dreamlu</groupId>
+                <artifactId>mica-mqtt-core</artifactId>
+                <version>${mica.mqtt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-registry-prometheus</artifactId>
+                <version>1.6.6</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sohu.tv</groupId>
+                <artifactId>mq-client-open</artifactId>
+                <version>${mqcloud.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-core</artifactId>
+                <version>1.6.6</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.lettuce</groupId>
+                <artifactId>lettuce-core</artifactId>
+                <version>${lettuce.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ojdbc</groupId>
+                <artifactId>ojdbc6</artifactId>
+                <version>11.2.0.4.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-jdk15on</artifactId>
+                <version>${bcprov.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>one.util</groupId>
+                <artifactId>streamex</artifactId>
+                <version>0.7.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jooq</groupId>
+                <artifactId>jool</artifactId>
+                <version>0.9.13</version>
+            </dependency>
+            <dependency>
+                <groupId>org.pf4j</groupId>
+                <artifactId>pf4j</artifactId>
+                <version>${pf4j-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-annotations</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <!-- okhttp3 -->
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-miniapp</artifactId>
+                <version>${WxJava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-open</artifactId>
+                <version>${WxJava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-mp</artifactId>
+                <version>${WxJava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-cp</artifactId>
+                <version>${WxJava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-json</artifactId>
+                <version>${hutool-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-core</artifactId>
+                <version>${hutool-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-http</artifactId>
+                <version>${hutool-version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.jfinal/jfinal -->
+            <dependency>
+                <groupId>com.jfinal</groupId>
+                <artifactId>jfinal</artifactId>
+                <version>4.8</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.jfinal/jfinal-weixin -->
+            <dependency>
+                <groupId>com.jfinal</groupId>
+                <artifactId>jfinal-weixin</artifactId>
+                <version>2.5</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/net.dreamlu/mica-auto -->
+            <dependency>
+                <groupId>net.dreamlu</groupId>
+                <artifactId>mica-auto</artifactId>
+                <version>1.1.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.bitbucket.b_c</groupId>
+                <artifactId>jose4j</artifactId>
+                <version>${jose4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.idsmanager</groupId>
+                <artifactId>jwt-sdk-jdk17</artifactId>
+                <version>${jz.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.unidal.framework</groupId>
+                <artifactId>foundation-service</artifactId>
+                <version>4.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dianping.cat</groupId>
+                <artifactId>cat-client</artifactId>
+                <version>${cat-client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>3.17.5</version>
+            </dependency>
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>6.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>${kafka.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>log4j</artifactId>
+                        <groupId>log4j</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.zookeeper</groupId>
+                        <artifactId>zookeeper</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>junit</groupId>
+                        <artifactId>junit</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>slf4j-log4j12</artifactId>
+                        <groupId>org.slf4j</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>log4j</artifactId>
+                        <groupId>log4j</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.caucho</groupId>
+                <artifactId>hessian</artifactId>
+                <version>${hessian.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>swagger-bootstrap-ui</artifactId>
+                <version>${bootstrap-ui.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>${alipay-sdk-version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>persistence-api</artifactId>
+                <version>${javax.persistence.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>${elasticsearch-rest-version7}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-high-level-client</artifactId>
+                <version>${elasticsearch-rest-version7}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-client</artifactId>
+                <version>${elasticsearch-rest-version7}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.8.5</version>
+            </dependency>
+            <!--            <dependency>-->
+            <!--                <groupId>com.thoughtworks.xstream</groupId>-->
+            <!--                <artifactId>xstream</artifactId>-->
+            <!--                <version>1.4.18</version>-->
+            <!--            </dependency>-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-tomcat</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.db4j</groupId>
+                <artifactId>reflectasm</artifactId>
+                <version>1.11.4-2</version>
+            </dependency>
+            <!-- JSR 310支持 -->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-typehandlers-jsr310</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+                <version>${dynamic-datasource-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-tools</artifactId>
+                <version>${rocketmq.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocketmq.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!--            <dependency>-->
+            <!--                <groupId>com.alibaba.csp</groupId>-->
+            <!--                <artifactId>sentinel-datasource-apollo</artifactId>-->
+            <!--                <version>1.5.2</version>-->
+            <!--            </dependency>-->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>slf4j-log4j12</artifactId>
+                <groupId>org.slf4j</groupId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jeasy</groupId>
+                <artifactId>easy-rules-core</artifactId>
+                <version>${easy-rules.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jeasy</groupId>
+                <artifactId>easy-rules-mvel</artifactId>
+                <version>${easy-rules.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jeasy</groupId>
+                <artifactId>easy-rules-spel</artifactId>
+                <version>${easy-rules.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>1.5.22</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache.commons.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.rocksdb</groupId>
+                <artifactId>rocksdbjni</artifactId>
+                <version>${rocksdbjni.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${apache.common.collections}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bbossgroups.plugins</groupId>
+                <artifactId>bboss-elasticsearch-rest</artifactId>
+                <version>${bboss-elasticsearch.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>jackson-annotations</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>jackson-databind</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>jackson-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>6.0.10.Final</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <!--缓存-->
+            <dependency>
+                <groupId>com.alicp.jetcache</groupId>
+                <artifactId>jetcache-anno</artifactId>
+                <version>${com.alicp.jetcache.jetcache-starter-redis}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alicp.jetcache</groupId>
+                <artifactId>jetcache-redis</artifactId>
+                <version>${com.alicp.jetcache.jetcache-starter-redis}</version>
+                <optional>true</optional>
+            </dependency>
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-openapi</artifactId>
+                <version>${apollo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>${apollo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.yto.security</groupId>
+                <artifactId>security-cipher-sdk</artifactId>
+                <version>${yto-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.io.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.xuxueli</groupId>
+                <artifactId>xxl-job-core</artifactId>
+                <version>${xxl.job.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jwt.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson-databind.version}</version>
+                <scope>compile</scope>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>jackson-core</artifactId>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jdk8</artifactId>
+                <version>${jackson.version}</version>
+                <scope>compile</scope>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>jackson-databind</artifactId>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>jackson-core</artifactId>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson.version}</version>
+                <scope>compile</scope>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>jackson-databind</artifactId>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>jackson-core</artifactId>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-parameter-names</artifactId>
+                <version>${jackson.version}</version>
+                <scope>compile</scope>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>jackson-databind</artifactId>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>jackson-core</artifactId>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>0.9.0</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.12</version>
+            </dependency>
+
+            <!-- Elastic Job Dependencies -->
+            <dependency>
+                <groupId>com.dangdang</groupId>
+                <artifactId>elastic-job-lite-core</artifactId>
+                <version>${elastic-job.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dangdang</groupId>
+                <artifactId>elastic-job-lite-spring</artifactId>
+                <version>${elastic-job.version}</version>
+            </dependency>
+            <!-- Curator Dependencies -->
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-client</artifactId>
+                <version>${curator.client.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>${curator.client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>${curator.client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>3.17</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>3.17</version>
+            </dependency>
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>3.1</version>
+            </dependency>
+
+            <dependency>
+                <artifactId>reactor-netty</artifactId>
+                <groupId>io.projectreactor.netty</groupId>
+                <version>${reactor-netty.version}</version>
+            </dependency>
+            <!--Framework依赖区域-->
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-model</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-core</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-weixin</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-throwable-policy</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-rest</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-rest-common</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-datasource</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-jwt-validate-handler</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-base</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-token-v2</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-safe-collect</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-delayed-queue</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-portal-provider</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-sso-provider</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-portal-crm-provider</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-jsc-provider</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-wdgj-provider</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-wdgj-app-provider</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-wdgj-ms-provider</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-zz-ms-provider</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-tmws-ms-provider</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-wdgj-jwt-provider</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-wdgj-app-ms-provider</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-xz-provider</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-chain</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-export</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-ratelimit</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-security</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-proxy-unpacket</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-gray</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-ftpclient</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <!--            <dependency>-->
+            <!--                <groupId>cn.yto.framework</groupId>-->
+            <!--                <artifactId>yto-framework-plugin-prometheusSource</artifactId>-->
+            <!--                <version>${framework.version}</version>-->
+            <!--            </dependency>-->
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-nacos-adapter</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-traffic</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-gateway</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-selfcheck</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-net</groupId>
+                <artifactId>commons-net</artifactId>
+                <version>${commons-net.version}</version>
+            </dependency>
+
+            <!--            <dependency>-->
+            <!--                <groupId>cn.yto.framework</groupId>-->
+            <!--                <artifactId>yto-framework-plugin-prometheusexception</artifactId>-->
+            <!--                <version>${framework.version}</version>-->
+            <!--            </dependency>-->
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-gray-bypass</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-prometheus</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-rocketmq-bypass</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-rocksdb</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-auth</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jcraft</groupId>
+                <artifactId>jsch</artifactId>
+                <version>0.1.55</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-sftp</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-ip2region</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-cat</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-encrypt</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.corundumstudio.socketio</groupId>
+                <artifactId>netty-socketio</artifactId>
+                <version>${netty-socketio.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-webSocket</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-hessian</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-deployment</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-proxy-v2</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-rpc</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <!--            <dependency>-->
+            <!--                <groupId>cn.yto.framework</groupId>-->
+            <!--                <artifactId>yto-framework-plugin-sso</artifactId>-->
+            <!--                <version>${framework.version}</version>-->
+            <!--            </dependency>-->
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-rules</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-easyrules</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-localresovler</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-localprovider</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>3.24.1-GA</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-kafkaAppender</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-xxljob</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-elasticjob</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-consul</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-risklog</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-elasticsearch</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-dingtalk</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-starters-nacos</artifactId>
+                <version>${framework.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-starters-compatible-nacos</artifactId>
+                <version>${framework.version}</version>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-starters-saas</artifactId>
+                <version>${framework.version}</version>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-elasticsearch-annotation</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-sentinel</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-apollo</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-apollo-i18n</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-annotation</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-logger</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-tfs</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-elasticsearch-v2</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <!--            <dependency>-->
+            <!--                <groupId>cn.yto.framework</groupId>-->
+            <!--                <artifactId>yto-inner-track-sdk</artifactId>-->
+            <!--                <version>${framework.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>cn.yto.framework</groupId>-->
+            <!--                <artifactId>yto-sdk-basic</artifactId>-->
+            <!--                <version>${framework.version}</version>-->
+            <!--            </dependency>-->
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-swagger</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-loggerMqImpl</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-starters-web</artifactId>
+                <version>${framework.version}</version>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-starters-cloud</artifactId>
+                <version>${framework.version}</version>
+                <type>pom</type>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-cache</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-cloud-common</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <!--            <dependency>-->
+            <!--                <groupId>cn.yto.framework</groupId>-->
+            <!--                <artifactId>yto-framework-plugin-token</artifactId>-->
+            <!--                <version>${framework.version}</version>-->
+            <!--            </dependency>-->
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-tenant</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-disruptor</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-phone-security</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-redis</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-mongodb</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-rocketmq</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-core</artifactId>
+                <version>${feign-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.t-io</groupId>
+                <artifactId>tio-core</artifactId>
+                <version>${tio.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.t-io</groupId>
+                <artifactId>tio-websocket-server</artifactId>
+                <version>${tio.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-redisson</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-sign</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-proxy</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-localmqstorage</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-msgmqnotify</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-msgestorage</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-sign-common</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-sign-v2</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-mqtt</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sohu.tv</groupId>
+                <artifactId>cachecloud-jedis</artifactId>
+                <version>${cachecloud-jedis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-jasypt</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-user-event</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-excel</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <!--            <dependency>-->
+            <!--                <groupId>cn.yto.framework</groupId>-->
+            <!--                <artifactId>yto-framework-compatible-dependencies</artifactId>-->
+            <!--                <version>${framework.version}</version>-->
+            <!--                <type>pom</type>-->
+            <!--                <scope>import</scope>-->
+            <!--            </dependency>-->
+
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-mqtt-starter</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-nacos</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-plugin-mqcloud</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-token-yz-ms-provider</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <!--            <dependency>-->
+            <!--                <groupId>cn.yto.framework</groupId>-->
+            <!--                <artifactId>yto-framework-plugin-workbench</artifactId>-->
+            <!--                <version>${framework.version}</version>-->
+            <!--            </dependency>-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>spring</artifactId>
+                        <groupId>org.springframework</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!-- 兼容平台部的中间件 -->
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-compatible-mqcloud</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-compatible-cachecloud</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <!--            <dependency>-->
+            <!--                <groupId>cn.yto.framework</groupId>-->
+            <!--                <artifactId>yto-framework-compatible-elasticsearch</artifactId>-->
+            <!--                <version>${framework.version}</version>-->
+            <!--            </dependency>-->
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-framework-compatible-core</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${nacos-client.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo-spring-boot-starter.vserion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-core-base</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-core-elasticsearch-revolution</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bbossgroups.plugins</groupId>
+                <artifactId>bboss-elasticsearch-rest-jdbc</artifactId>
+                <version>${elastic.new.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bbossgroups.plugins</groupId>
+                <artifactId>bboss-elasticsearch-spring-boot-starter</artifactId>
+                <version>${elastic.new.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-core-mqcloud</artifactId>
+                <version>${framework.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.alibaba</groupId>
+                        <artifactId>fastjson</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-core-cachecloud</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-core</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.codehaus.plexus</groupId>
+                <artifactId>plexus-container-default</artifactId>
+                <version>${plexus.container.default}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.google.collections</groupId>
+                        <artifactId>google-collections</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-core-cat-plugin</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-core-clickhouse</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.housepower</groupId>
+                <artifactId>clickhouse-native-jdbc</artifactId>
+                <version>${clickhouse.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-core-dynamic-esjob</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-core-elasticjob-anno</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <!--            <dependency>-->
+            <!--                <groupId>cn.yto.framework</groupId>-->
+            <!--                <artifactId>yto-core-elasticsearch</artifactId>-->
+            <!--                <version>${framework.version}</version>-->
+            <!--            </dependency>-->
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-core-utils</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutoll.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.belerweb</groupId>
+                <artifactId>pinyin4j</artifactId>
+                <version>${pinyin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-core-export-fdfs</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-core-fastdfs</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-core-jetcachecloud</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-core-xss</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.yto.framework</groupId>
+                <artifactId>yto-core-cache</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.dromara.dynamictp</groupId>
+                <artifactId>dynamic-tp-spring-boot-starter-apollo</artifactId>
+                <version>${dynamictp.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <pluginManagement>
+            <plugins>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven-assembly-plugin.version}</version>
+                    <configuration>
+                        <recompressZippedFiles>false</recompressZippedFiles>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven-clean-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${maven-install-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-help-plugin</artifactId>
+                    <version>${maven-help-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven-site-plugin.version}</version>
+                </plugin>
+                <!--                <plugin>-->
+                <!--                    <groupId>org.apache.maven.plugins</groupId>-->
+                <!--                    <artifactId>maven-source-plugin</artifactId>-->
+                <!--                    <version>${maven-source-plugin.version}</version>-->
+                <!--                </plugin>-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${build-helper-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+    </build>
+</project>

@@ -1,5 +1,5 @@
 --
--- Copyright 2022 Apollo Authors
+-- Copyright 2023 Apollo Authors
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -27,14 +27,14 @@ CREATE DATABASE IF NOT EXISTS ApolloPortalDB DEFAULT CHARACTER SET = utf8mb4;
 
 Use ApolloPortalDB;
 
-# Dump of table app
-# ------------------------------------------------------------
+-- Dump of table app
+-- ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `App`;
 
 CREATE TABLE `App` (
   `Id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `AppId` varchar(500) NOT NULL DEFAULT 'default' COMMENT 'AppID',
+  `AppId` varchar(64) NOT NULL DEFAULT 'default' COMMENT 'AppID',
   `Name` varchar(500) NOT NULL DEFAULT 'default' COMMENT '应用名',
   `OrgId` varchar(32) NOT NULL DEFAULT 'default' COMMENT '部门Id',
   `OrgName` varchar(64) NOT NULL DEFAULT 'default' COMMENT '部门名字',
@@ -54,8 +54,8 @@ CREATE TABLE `App` (
 
 
 
-# Dump of table appnamespace
-# ------------------------------------------------------------
+-- Dump of table appnamespace
+-- ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `AppNamespace`;
 
@@ -80,14 +80,14 @@ CREATE TABLE `AppNamespace` (
 
 
 
-# Dump of table consumer
-# ------------------------------------------------------------
+-- Dump of table consumer
+-- ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `Consumer`;
 
 CREATE TABLE `Consumer` (
   `Id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增Id',
-  `AppId` varchar(500) NOT NULL DEFAULT 'default' COMMENT 'AppID',
+  `AppId` varchar(64) NOT NULL DEFAULT 'default' COMMENT 'AppID',
   `Name` varchar(500) NOT NULL DEFAULT 'default' COMMENT '应用名',
   `OrgId` varchar(32) NOT NULL DEFAULT 'default' COMMENT '部门Id',
   `OrgName` varchar(64) NOT NULL DEFAULT 'default' COMMENT '部门名字',
@@ -106,8 +106,8 @@ CREATE TABLE `Consumer` (
 
 
 
-# Dump of table consumeraudit
-# ------------------------------------------------------------
+-- Dump of table consumeraudit
+-- ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `ConsumerAudit`;
 
@@ -125,8 +125,8 @@ CREATE TABLE `ConsumerAudit` (
 
 
 
-# Dump of table consumerrole
-# ------------------------------------------------------------
+-- Dump of table consumerrole
+-- ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `ConsumerRole`;
 
@@ -148,8 +148,8 @@ CREATE TABLE `ConsumerRole` (
 
 
 
-# Dump of table consumertoken
-# ------------------------------------------------------------
+-- Dump of table consumertoken
+-- ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `ConsumerToken`;
 
@@ -157,6 +157,7 @@ CREATE TABLE `ConsumerToken` (
   `Id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增Id',
   `ConsumerId` int(11) unsigned DEFAULT NULL COMMENT 'ConsumerId',
   `Token` varchar(128) NOT NULL DEFAULT '' COMMENT 'token',
+  `RateLimit` int NOT NULL DEFAULT '0' COMMENT '限流值',
   `Expires` datetime NOT NULL DEFAULT '2099-01-01 00:00:00' COMMENT 'token失效时间',
   `IsDeleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '1: deleted, 0: normal',
   `DeletedAt` BIGINT(20) NOT NULL DEFAULT '0' COMMENT 'Delete timestamp based on milliseconds',
@@ -169,15 +170,15 @@ CREATE TABLE `ConsumerToken` (
   KEY `DataChange_LastTime` (`DataChange_LastTime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='consumer token表';
 
-# Dump of table favorite
-# ------------------------------------------------------------
+-- Dump of table favorite
+-- ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `Favorite`;
 
 CREATE TABLE `Favorite` (
   `Id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `UserId` varchar(32) NOT NULL DEFAULT 'default' COMMENT '收藏的用户',
-  `AppId` varchar(500) NOT NULL DEFAULT 'default' COMMENT 'AppID',
+  `AppId` varchar(64) NOT NULL DEFAULT 'default' COMMENT 'AppID',
   `Position` int(32) NOT NULL DEFAULT '10000' COMMENT '收藏顺序',
   `IsDeleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '1: deleted, 0: normal',
   `DeletedAt` BIGINT(20) NOT NULL DEFAULT '0' COMMENT 'Delete timestamp based on milliseconds',
@@ -187,12 +188,12 @@ CREATE TABLE `Favorite` (
   `DataChange_LastTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
   PRIMARY KEY (`Id`),
   UNIQUE KEY `UK_UserId_AppId_DeletedAt` (`UserId`,`AppId`,`DeletedAt`),
-  KEY `AppId` (`AppId`(191)),
+  KEY `AppId` (`AppId`),
   KEY `DataChange_LastTime` (`DataChange_LastTime`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COMMENT='应用收藏表';
 
-# Dump of table permission
-# ------------------------------------------------------------
+-- Dump of table permission
+-- ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `Permission`;
 
@@ -213,8 +214,8 @@ CREATE TABLE `Permission` (
 
 
 
-# Dump of table role
-# ------------------------------------------------------------
+-- Dump of table role
+-- ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `Role`;
 
@@ -234,8 +235,8 @@ CREATE TABLE `Role` (
 
 
 
-# Dump of table rolepermission
-# ------------------------------------------------------------
+-- Dump of table rolepermission
+-- ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `RolePermission`;
 
@@ -257,8 +258,8 @@ CREATE TABLE `RolePermission` (
 
 
 
-# Dump of table serverconfig
-# ------------------------------------------------------------
+-- Dump of table serverconfig
+-- ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `ServerConfig`;
 
@@ -280,8 +281,8 @@ CREATE TABLE `ServerConfig` (
 
 
 
-# Dump of table userrole
-# ------------------------------------------------------------
+-- Dump of table userrole
+-- ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `UserRole`;
 
@@ -301,8 +302,8 @@ CREATE TABLE `UserRole` (
   KEY `IX_RoleId` (`RoleId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户和role的绑定表';
 
-# Dump of table Users
-# ------------------------------------------------------------
+-- Dump of table Users
+-- ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `Users`;
 
@@ -318,8 +319,8 @@ CREATE TABLE `Users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
 
-# Dump of table Authorities
-# ------------------------------------------------------------
+-- Dump of table Authorities
+-- ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `Authorities`;
 
@@ -329,6 +330,92 @@ CREATE TABLE `Authorities` (
   `Authority` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- spring session (https://github.com/spring-projects/spring-session/blob/faee8f1bdb8822a5653a81eba838dddf224d92d6/spring-session-jdbc/src/main/resources/org/springframework/session/jdbc/schema-mysql.sql)
+-- Dump of table SPRING_SESSION
+-- ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `SPRING_SESSION`;
+
+CREATE TABLE `SPRING_SESSION` (
+  `PRIMARY_ID` char(36) NOT NULL,
+  `SESSION_ID` char(36) NOT NULL,
+  `CREATION_TIME` bigint NOT NULL,
+  `LAST_ACCESS_TIME` bigint NOT NULL,
+  `MAX_INACTIVE_INTERVAL` int NOT NULL,
+  `EXPIRY_TIME` bigint NOT NULL,
+  `PRINCIPAL_NAME` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`PRIMARY_ID`),
+  UNIQUE KEY `SPRING_SESSION_IX1` (`SESSION_ID`),
+  KEY `SPRING_SESSION_IX2` (`EXPIRY_TIME`),
+  KEY `SPRING_SESSION_IX3` (`PRINCIPAL_NAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Dump of table SPRING_SESSION_ATTRIBUTES
+-- ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `SPRING_SESSION_ATTRIBUTES`;
+
+CREATE TABLE `SPRING_SESSION_ATTRIBUTES` (
+  `SESSION_PRIMARY_ID` char(36) NOT NULL,
+  `ATTRIBUTE_NAME` varchar(200) NOT NULL,
+  `ATTRIBUTE_BYTES` blob NOT NULL,
+  PRIMARY KEY (`SESSION_PRIMARY_ID`,`ATTRIBUTE_NAME`),
+  CONSTRAINT `SPRING_SESSION_ATTRIBUTES_FK` FOREIGN KEY (`SESSION_PRIMARY_ID`) REFERENCES `SPRING_SESSION` (`PRIMARY_ID`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Dump of table AuditLog
+-- ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `AuditLog`;
+
+CREATE TABLE `AuditLog` (
+  `Id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `TraceId` varchar(32) NOT NULL DEFAULT '' COMMENT '链路全局唯一ID',
+  `SpanId` varchar(32) NOT NULL DEFAULT '' COMMENT '跨度ID',
+  `ParentSpanId` varchar(32) DEFAULT NULL COMMENT '父跨度ID',
+  `FollowsFromSpanId` varchar(32) DEFAULT NULL COMMENT '上一个兄弟跨度ID',
+  `Operator` varchar(64) NOT NULL DEFAULT 'anonymous' COMMENT '操作人',
+  `OpType` varchar(50) NOT NULL DEFAULT 'default' COMMENT '操作类型',
+  `OpName` varchar(150) NOT NULL DEFAULT 'default' COMMENT '操作名称',
+  `Description` varchar(200) DEFAULT NULL COMMENT '备注',
+  `IsDeleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '1: deleted, 0: normal',
+  `DeletedAt` BIGINT(20) NOT NULL DEFAULT '0' COMMENT 'Delete timestamp based on milliseconds',
+  `DataChange_CreatedBy` varchar(64) DEFAULT NULL COMMENT '创建人邮箱前缀',
+  `DataChange_CreatedTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `DataChange_LastModifiedBy` varchar(64) DEFAULT '' COMMENT '最后修改人邮箱前缀',
+  `DataChange_LastTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  PRIMARY KEY (`Id`),
+  KEY `IX_TraceId` (`TraceId`),
+  KEY `IX_OpName` (`OpName`),
+  KEY `IX_DataChange_CreatedTime` (`DataChange_CreatedTime`),
+  KEY `IX_Operator` (`Operator`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='审计日志表';
+
+-- Dump of table AuditLogDataInfluence
+-- ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `AuditLogDataInfluence`;
+
+CREATE TABLE `AuditLogDataInfluence` (
+  `Id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `SpanId` char(32) NOT NULL DEFAULT '' COMMENT '跨度ID',
+  `InfluenceEntityId` varchar(50) NOT NULL DEFAULT '0' COMMENT '记录ID',
+  `InfluenceEntityName` varchar(50) NOT NULL DEFAULT 'default' COMMENT '表名',
+  `FieldName` varchar(50) DEFAULT NULL COMMENT '字段名称',
+  `FieldOldValue` varchar(500) DEFAULT NULL COMMENT '字段旧值',
+  `FieldNewValue` varchar(500) DEFAULT NULL COMMENT '字段新值',
+  `IsDeleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '1: deleted, 0: normal',
+  `DeletedAt` BIGINT(20) NOT NULL DEFAULT '0' COMMENT 'Delete timestamp based on milliseconds',
+  `DataChange_CreatedBy` varchar(64) DEFAULT NULL COMMENT '创建人邮箱前缀',
+  `DataChange_CreatedTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `DataChange_LastModifiedBy` varchar(64) DEFAULT '' COMMENT '最后修改人邮箱前缀',
+  `DataChange_LastTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  PRIMARY KEY (`Id`),
+  KEY `IX_SpanId` (`SpanId`),
+  KEY `IX_DataChange_CreatedTime` (`DataChange_CreatedTime`),
+  KEY `IX_EntityId` (`InfluenceEntityId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='审计日志数据变动表';
 
 
 # Config
@@ -344,9 +431,10 @@ VALUES
     ('configView.memberOnly.envs', 'dev', '只对项目成员显示配置信息的环境列表，多个env以英文逗号分隔'),
     ('apollo.portal.meta.servers', '{}', '各环境Meta Service列表');
 
+
 INSERT INTO `Users` (`Username`, `Password`, `UserDisplayName`, `Email`, `Enabled`)
 VALUES
-    ('apollo', '$2a$10$7r20uS.BQ9uBpf3Baj3uQOZvMVvB1RN3PYoKE94gtz2.WAOuiiwXS', 'apollo', 'apollo@acme.com', 1);
+  ('apollo', '$2a$10$7r20uS.BQ9uBpf3Baj3uQOZvMVvB1RN3PYoKE94gtz2.WAOuiiwXS', 'apollo', 'apollo@acme.com', 1);
 
 INSERT INTO `Authorities` (`Username`, `Authority`) VALUES ('apollo', 'ROLE_user');
 
@@ -354,63 +442,39 @@ INSERT INTO `Authorities` (`Username`, `Authority`) VALUES ('apollo', 'ROLE_user
 # ------------------------------------------------------------
 INSERT INTO `App` (`AppId`, `Name`, `OrgId`, `OrgName`, `OwnerName`, `OwnerEmail`)
 VALUES
-	('SampleApp', 'Sample App', 'TEST1', '样例部门1', 'apollo', 'apollo@acme.com');
+  ('SampleApp', 'Sample App', 'TEST1', '样例部门1', 'apollo', 'apollo@acme.com');
 
 INSERT INTO `AppNamespace` (`Name`, `AppId`, `Format`, `IsPublic`, `Comment`)
 VALUES
-	('application', 'SampleApp', 'properties', 0, 'default app namespace');
+  ('application', 'SampleApp', 'properties', 0, 'default app namespace');
 
 INSERT INTO `Permission` (`Id`, `PermissionType`, `TargetId`)
 VALUES
-	(1, 'CreateCluster', 'SampleApp'),
-	(2, 'CreateNamespace', 'SampleApp'),
-	(3, 'AssignRole', 'SampleApp'),
-	(4, 'ModifyNamespace', 'SampleApp+application'),
-	(5, 'ReleaseNamespace', 'SampleApp+application');
+  (1, 'CreateCluster', 'SampleApp'),
+  (2, 'CreateNamespace', 'SampleApp'),
+  (3, 'AssignRole', 'SampleApp'),
+  (4, 'ModifyNamespace', 'SampleApp+application'),
+  (5, 'ReleaseNamespace', 'SampleApp+application');
 
 INSERT INTO `Role` (`Id`, `RoleName`)
 VALUES
-	(1, 'Master+SampleApp'),
-	(2, 'ModifyNamespace+SampleApp+application'),
-	(3, 'ReleaseNamespace+SampleApp+application');
+  (1, 'Master+SampleApp'),
+  (2, 'ModifyNamespace+SampleApp+application'),
+  (3, 'ReleaseNamespace+SampleApp+application');
 
 INSERT INTO `RolePermission` (`RoleId`, `PermissionId`)
 VALUES
-	(1, 1),
-	(1, 2),
-	(1, 3),
-	(2, 4),
-	(3, 5);
+  (1, 1),
+  (1, 2),
+  (1, 3),
+  (2, 4),
+  (3, 5);
 
 INSERT INTO `UserRole` (`UserId`, `RoleId`)
 VALUES
-	('apollo', 1),
-	('apollo', 2),
-	('apollo', 3);
-
--- spring session (https://github.com/spring-projects/spring-session/blob/faee8f1bdb8822a5653a81eba838dddf224d92d6/spring-session-jdbc/src/main/resources/org/springframework/session/jdbc/schema-mysql.sql)
-CREATE TABLE SPRING_SESSION (
-	PRIMARY_ID CHAR(36) NOT NULL,
-	SESSION_ID CHAR(36) NOT NULL,
-	CREATION_TIME BIGINT NOT NULL,
-	LAST_ACCESS_TIME BIGINT NOT NULL,
-	MAX_INACTIVE_INTERVAL INT NOT NULL,
-	EXPIRY_TIME BIGINT NOT NULL,
-	PRINCIPAL_NAME VARCHAR(100),
-	CONSTRAINT SPRING_SESSION_PK PRIMARY KEY (PRIMARY_ID)
-) ENGINE=InnoDB ROW_FORMAT=DYNAMIC;
-
-CREATE UNIQUE INDEX SPRING_SESSION_IX1 ON SPRING_SESSION (SESSION_ID);
-CREATE INDEX SPRING_SESSION_IX2 ON SPRING_SESSION (EXPIRY_TIME);
-CREATE INDEX SPRING_SESSION_IX3 ON SPRING_SESSION (PRINCIPAL_NAME);
-
-CREATE TABLE SPRING_SESSION_ATTRIBUTES (
-	SESSION_PRIMARY_ID CHAR(36) NOT NULL,
-	ATTRIBUTE_NAME VARCHAR(200) NOT NULL,
-	ATTRIBUTE_BYTES BLOB NOT NULL,
-	CONSTRAINT SPRING_SESSION_ATTRIBUTES_PK PRIMARY KEY (SESSION_PRIMARY_ID, ATTRIBUTE_NAME),
-	CONSTRAINT SPRING_SESSION_ATTRIBUTES_FK FOREIGN KEY (SESSION_PRIMARY_ID) REFERENCES SPRING_SESSION(PRIMARY_ID) ON DELETE CASCADE
-) ENGINE=InnoDB ROW_FORMAT=DYNAMIC;
+  ('apollo', 1),
+  ('apollo', 2),
+  ('apollo', 3);
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

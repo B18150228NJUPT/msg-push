@@ -7,12 +7,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="widWare-apollo" />
         <module name="caller" />
-        <module name="msg-flink" />
         <module name="msg-push-service" />
         <module name="test" />
+        <module name="eureka-sever" />
         <module name="msg-push-api" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="msg-flink" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="eureka-sever" options="-parameters" />
+    </option>
   </component>
 </project>

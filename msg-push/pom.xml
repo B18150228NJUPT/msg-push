@@ -18,9 +18,9 @@
 
     <modules>
         <module>msg-push-api</module>
-        <module>msg-push-service</module>
+<!--        <module>msg-push-service</module>-->
         <module>caller</module>
-        <module>msg-flink</module>
+<!--        <module>msg-flink</module>-->
         <module>test</module>
     </modules>
 

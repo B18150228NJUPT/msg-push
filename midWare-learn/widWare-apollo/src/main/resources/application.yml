@@ -1,0 +1,93 @@
+#apollo:
+#  meta: http://localhost:8080
+#  bootstrap:
+#    enabled: true
+#    namespaces: TEST1.test.yml
+
+jetcache:
+  statIntervalMinutes: 1
+  areaInCacheName: false
+  local:
+    default:
+      type: linkedhashmap
+      keyConvertor: fastjson2
+  remote:
+    default:
+      type: redis
+      keyConvertor: fastjson2
+      broadcastChannel: projectA
+      keyPrefix: projectA
+      valueEncoder: java
+      valueDecoder: java
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: 127.0.0.1
+      port: 16379
+      defaultExpireInMillis: 5000
+
+app:
+  id: ${spring.application.name}
+
+server:
+  port: 18081
+  servlet:
+    context-path: /${spring.application.name}
+
+spring:
+  application:
+      name: midWare-learn
+  cloud:
+#    sentinel:
+#      transport:
+#        dashboard: localhost:18080
+        # 客户端与Dashboard通信的端口，默认8719，如被占用会自动+1
+#        port: 8719
+      # 配置规则持久化（可选，这里以文件为例）
+#      datasource:
+#        flow-rule:
+#          nacos:
+#            server-addr: http://localhost:8848
+#            namespace: sentinel
+#            username: nacos
+#            password: nacos
+#            data-id: ${spring.application.name}-flow-rules
+#            rule-type: flow
+#            group-id: SENTINEL_GROUP
+#            data-type: json
+#        degrade-rule:
+#          nacos:
+#            server-addr: http://localhost:8848
+#            namespace: sentinel
+#            username: nacos
+#            password: nacos
+#            data-id: ${spring.application.name}-degrade-rules
+#            rule-type: degrade
+#            group-id: SENTINEL_GROUP
+#            data-type: json
+#  datasource:
+#    dynamic:
+#      datasource:
+#        master:
+#          username: root
+#          password: root123_A
+#          url: jdbc:mysql://localhost:13307/austin?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&allowMultiQueries=true
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#        slaver:
+#          username: root
+#          password: root123_A
+#          url: jdbc:mysql://localhost:13307/austin?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&allowMultiQueries=true
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#      mp-enabled: true
+
+management:
+#  server:
+#    port: 18088
+  # 端点配置
+  endpoints:
+    # HTTP端点配置
+    web:
+      exposure:
+        # 暴露的端点，* 表示所有（生产环境建议显式指定需要的端点）
+        include: health,info,metrics,prometheus,beans,env
