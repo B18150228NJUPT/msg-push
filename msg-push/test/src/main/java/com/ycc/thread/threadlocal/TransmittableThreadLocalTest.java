@@ -36,7 +36,15 @@ public class TransmittableThreadLocalTest {
             System.out.println("线程池任务获取新值：" + context.get()); // 输出 "parent-new-value"
         }));
 
-        executor.shutdown();
+        context.set("123");
+        Object captured = TransmittableThreadLocal.Transmitter.capture();
+        System.out.println("captured: " + captured);
 
+        executor.submit((() -> {
+            TransmittableThreadLocal.Transmitter.replay(captured);
+            System.out.println("线程池任务获取值：" + context.get()); // 输出 "parent-value"
+        }));
+
+        executor.shutdown();
     }
 }

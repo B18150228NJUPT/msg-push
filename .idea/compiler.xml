@@ -7,11 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="widWare-apollo" />
         <module name="caller" />
-        <module name="msg-push-service" />
         <module name="test" />
         <module name="eureka-sever" />
+        <module name="springboot3" />
+        <module name="widWare-apollo" />
+        <module name="msg-push-service" />
         <module name="msg-push-api" />
       </profile>
     </annotationProcessing>

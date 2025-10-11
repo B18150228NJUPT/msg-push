@@ -12,5 +12,6 @@
         <module>dependencies-all</module>
         <module>widWare-apollo</module>
         <module>eureka-sever</module>
+        <module>springboot3</module>
     </modules>
 </project>
