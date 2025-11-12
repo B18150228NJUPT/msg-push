@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/midWare-learn/midWare-learn.iml" filepath="$PROJECT_DIR$/midWare-learn/midWare-learn.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/msg-push-all.iml" filepath="$PROJECT_DIR$/.idea/msg-push-all.iml" />
     </modules>
   </component>
