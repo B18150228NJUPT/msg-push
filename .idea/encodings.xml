@@ -23,5 +23,7 @@
     <file url="file://$PROJECT_DIR$/msg-push/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/msg-push/test/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/msg-push/test/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/testSpringboot3/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/testSpringboot3/src/main/resources" charset="UTF-8" />
   </component>
 </project>

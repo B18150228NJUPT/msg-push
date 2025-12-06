@@ -14,6 +14,7 @@
         <module name="widWare-apollo" />
         <module name="msg-push-service" />
         <module name="msg-push-api" />
+        <module name="testSpringboot3" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
