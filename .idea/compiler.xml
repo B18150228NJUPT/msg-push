@@ -14,11 +14,11 @@
         <module name="widWare-apollo" />
         <module name="msg-push-service" />
         <module name="msg-push-api" />
-        <module name="testSpringboot3" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="msg-flink" target="1.8" />
+      <module name="testSpringboot3" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
