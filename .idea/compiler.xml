@@ -7,6 +7,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="biz1" />
+        <module name="biz2" />
         <module name="caller" />
         <module name="test" />
         <module name="eureka-sever" />
@@ -14,6 +16,7 @@
         <module name="widWare-apollo" />
         <module name="msg-push-service" />
         <module name="msg-push-api" />
+        <module name="base" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
