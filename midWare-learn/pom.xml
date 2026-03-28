@@ -13,5 +13,6 @@
         <module>widWare-apollo</module>
         <module>eureka-sever</module>
         <module>springboot3</module>
+        <module>sofa-ark</module>
     </modules>
 </project>
