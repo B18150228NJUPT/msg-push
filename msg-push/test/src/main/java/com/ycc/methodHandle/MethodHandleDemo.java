@@ -3,12 +3,14 @@ package com.ycc.methodHandle;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
+import java.util.Arrays;
 
 public class MethodHandleDemo {
 
     public static void main(String[] args) throws Throwable {
         // 1. 调用实例方法（greet）
         testInvokeInstanceMethod();
+        testInvokeInstanceMethod2();
 
         // 2. 调用静态方法（add）
         testInvokeStaticMethod();
@@ -28,7 +30,7 @@ public class MethodHandleDemo {
         // a. 获取Lookup实例（具备访问权限）
         MethodHandles.Lookup lookup = MethodHandles.lookup();
 
-        // b. 定义MethodType：返回值String，参数String（greet方法的签名）
+        // b.1 定义MethodType：返回值String，参数String（greet方法的签名）
         MethodType mt = MethodType.methodType(String.class, String.class);
 
         // c. 查找实例方法"greet"
@@ -38,6 +40,28 @@ public class MethodHandleDemo {
         String result = (String) mh.invoke(target, "Hello");
         System.out.println("实例方法调用结果：" + result); // 输出：Hello, Alice
     }
+
+
+    // 1.2 调用实例方法
+    private static void testInvokeInstanceMethod2() throws Throwable {
+        // 创建目标实例
+        Target target = new Target("Alice");
+
+        // a. 获取Lookup实例（具备访问权限）
+        MethodHandles.Lookup lookup = MethodHandles.lookup();
+
+        // b.2
+        MethodType mt = MethodType.methodType(Arrays.stream(Target.class.getMethods()).filter(x -> x.getName().equals("greet"))
+                .findFirst().map(x -> x.getReturnType()).orElseThrow(() -> new RuntimeException("no greet method")));
+
+        // c. 查找实例方法"greet"
+        MethodHandle mh = MethodHandles.privateLookupIn(Target.class, lookup).findVirtual(Target.class, "greet", mt);
+
+        // d. 调用：第一个参数是实例，后续是方法参数
+        String result = (String) mh.invoke(target, "Hello");
+        System.out.println("实例方法调用结果：" + result); // 输出：Hello, Alice
+    }
+
 
     // 2. 调用静态方法
     private static void testInvokeStaticMethod() throws Throwable {
