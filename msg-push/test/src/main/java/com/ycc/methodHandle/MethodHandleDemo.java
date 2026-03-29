@@ -50,9 +50,14 @@ public class MethodHandleDemo {
         // a. 获取Lookup实例（具备访问权限）
         MethodHandles.Lookup lookup = MethodHandles.lookup();
 
-        // b.2
-        MethodType mt = MethodType.methodType(Arrays.stream(Target.class.getMethods()).filter(x -> x.getName().equals("greet"))
-                .findFirst().map(x -> x.getReturnType()).orElseThrow(() -> new RuntimeException("no greet method")));
+        // b.2 通过反射动态获取方法签名
+        java.lang.reflect.Method greetMethod = Arrays.stream(Target.class.getMethods())
+                .filter(x -> x.getName().equals("greet"))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("no greet method"));
+        
+        // 从反射的 Method 对象创建 MethodType（返回类型 + 参数类型数组）
+        MethodType mt = MethodType.methodType(greetMethod.getReturnType(), greetMethod.getParameterTypes());
 
         // c. 查找实例方法"greet"
         MethodHandle mh = MethodHandles.privateLookupIn(Target.class, lookup).findVirtual(Target.class, "greet", mt);
