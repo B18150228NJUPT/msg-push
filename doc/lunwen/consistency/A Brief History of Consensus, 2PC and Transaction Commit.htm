@@ -1,0 +1,760 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0081)https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Beta Thoughts</title>
+
+  <script src="./A Brief History of Consensus, 2PC and Transaction Commit_files/cb=gapi.loaded_1" async=""></script><script src="./A Brief History of Consensus, 2PC and Transaction Commit_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript">(function() { (function(){function b(g){this.t={};this.tick=function(h,m,f){var n=void 0!=f?f:(new Date).getTime();this.t[h]=[n,m];if(void 0==f)try{window.console.timeStamp("CSI/"+h)}catch(q){}};this.tick("start",null,g)}var a;if(window.performance)var e=(a=window.performance.timing)&&a.responseStart;var p=0<e?new b(e):new b;window.jstiming={Timer:b,load:p};if(a){var c=a.navigationStart;0<c&&e>=c&&(window.jstiming.srt=e-c)}if(a){var d=window.jstiming.load;0<c&&e>=c&&(d.tick("_wtsrt",void 0,c),d.tick("wtsrt_","_wtsrt",
+e),d.tick("tbsd_","wtsrt_"))}try{a=null,window.chrome&&window.chrome.csi&&(a=Math.floor(window.chrome.csi().pageT),d&&0<c&&(d.tick("_tbnd",void 0,window.chrome.csi().startE),d.tick("tbnd_","_tbnd",c))),null==a&&window.gtbExternal&&(a=window.gtbExternal.pageT()),null==a&&window.external&&(a=window.external.pageT,d&&0<c&&(d.tick("_tbnd",void 0,window.external.startE),d.tick("tbnd_","_tbnd",c))),a&&(window.jstiming.pt=a)}catch(g){}})();window.tickAboveFold=function(b){var a=0;if(b.offsetParent){do a+=b.offsetTop;while(b=b.offsetParent)}b=a;750>=b&&window.jstiming.load.tick("aft")};var k=!1;function l(){k||(k=!0,window.jstiming.load.tick("firstScrollTime"))}window.addEventListener?window.addEventListener("scroll",l,!1):window.attachEvent("onscroll",l);
+ })();</script><script type="text/javascript">function a(){var b=window.location.href,c=b.split("?");switch(c.length){case 1:return b+"?m=1";case 2:return 0<=c[1].search("(^|&)m=")?null:b+"&m=1";default:return null}}var d=navigator.userAgent;if(-1!=d.indexOf("Mobile")&&-1!=d.indexOf("WebKit")&&-1==d.indexOf("iPad")||-1!=d.indexOf("Opera Mini")||-1!=d.indexOf("IEMobile")){var e=a();e&&window.location.replace(e)};
+</script>
+<meta name="generator" content="Blogger">
+<link rel="icon" type="image/vnd.microsoft.icon" href="https://www.blogger.com/favicon.ico">
+<link rel="alternate" type="application/atom+xml" title="Beta Thoughts - Atom" href="https://betathoughts.blogspot.com/feeds/posts/default">
+<link rel="alternate" type="application/rss+xml" title="Beta Thoughts - RSS" href="https://betathoughts.blogspot.com/feeds/posts/default?alt=rss">
+<link rel="service.post" type="application/atom+xml" title="Beta Thoughts - Atom" href="https://www.blogger.com/feeds/37470176/posts/default">
+<link rel="alternate" type="application/atom+xml" title="Beta Thoughts - Atom" href="https://betathoughts.blogspot.com/feeds/4188776420268450409/comments/default">
+<link rel="stylesheet" type="text/css" href="./A Brief History of Consensus, 2PC and Transaction Commit_files/50269083-blog_controls.css">
+<link rel="stylesheet" type="text/css" href="https://www.blogger.com/dyn-css/authorization.css?targetBlogID=37470176&amp;zx=f13c67bf-1c08-4036-9a81-3a17c6a740ec">
+
+
+  <style type="text/css">
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Minima Black
+Designer: Douglas Bowman
+URL:      www.stopdesign.com
+Date:     26 Feb 2004
+----------------------------------------------- */
+
+
+body {
+  background:#000;
+  margin:0;
+  padding:40px 20px;
+  font:x-small "Trebuchet MS",Trebuchet,Verdana,Sans-Serif;
+  text-align:center;
+  color:#ccc;
+  font-size/* */:/**/small;
+  font-size: /**/small;
+  }
+a:link {
+  color:#9ad;
+  text-decoration:none;
+  }
+a:visited {
+  color:#a7a;
+  text-decoration:none;
+  }
+a:hover {
+  color:#ad9;
+  text-decoration:underline;
+  }
+a img {
+  border-width:0;
+  }
+
+
+/* Header
+----------------------------------------------- */
+@media all {
+  #header {
+    width:660px;
+    margin:0 auto 10px;
+    border:1px solid #333;
+    }
+  }
+@media handheld {
+  #header {
+    width:90%;
+    }
+  }
+#blog-title {
+  margin:5px 5px 0;
+  padding:20px 20px .25em;
+  border:1px solid #222;
+  border-width:1px 1px 0;
+  font-size:200%;
+  line-height:1.2em;
+  color:#ccc;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  }
+#blog-title a {
+  color:#ccc;
+  text-decoration:none;
+  }
+#blog-title a:hover {
+  color:#ad9;
+  }
+#description {
+  margin:0 5px 5px;
+  padding:0 20px 20px;
+  border:1px solid #222;
+  border-width:0 1px 1px;
+  font:78%/1.4em "Trebuchet MS",Trebuchet,Arial,Verdana,Sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  color:#777;
+  }
+
+
+/* Content
+----------------------------------------------- */
+@media all {
+  #content {
+    width:660px;
+    margin:0 auto;
+    padding:0;
+    text-align:left;
+    }
+  #main {
+    width:410px;
+    float:left;
+    }
+  #sidebar {
+    width:220px;
+    float:right;
+    }
+  }
+@media handheld {
+  #content {
+    width:90%;
+    }
+  #main {
+    width:100%;
+    float:none;
+    }
+  #sidebar {
+    width:100%;
+    float:none;
+    }
+  }
+
+
+/* Headings
+----------------------------------------------- */
+h2 {
+  margin:1.5em 0 .75em;
+  font:bold 78%/1.4em "Trebuchet MS",Trebuchet,Arial,Verdana,Sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  color:#777;
+  }
+
+
+/* Posts
+----------------------------------------------- */
+@media all {
+  .date-header {
+    margin:1.5em 0 .5em;
+    }
+  .post {
+    margin:.5em 0 1.5em;
+    border-bottom:1px dotted #444;
+    padding-bottom:1.5em;
+    }
+  }
+@media handheld {
+  .date-header {
+    padding:0 1.5em 0 1.5em;
+    }
+  .post {
+    padding:0 1.5em 0 1.5em;
+    }
+  }
+.post-title {
+  margin:.25em 0 0;
+  padding:0 0 4px;
+  font-size:140%;
+  line-height:1.4em;
+  color:#ad9;
+  }
+.post-title a {
+  text-decoration:none;
+  color:#ad9;
+  }
+.post-title a:hover {
+  color:#fff;
+  }
+.post div {
+  margin:0 0 .75em;
+  line-height:1.6em;
+  }
+p.post-footer {
+  margin:-.25em 0 0;
+  color:#333;
+  }
+.post-footer em, .comment-link {
+  font:78%/1.4em "Trebuchet MS",Trebuchet,Arial,Verdana,Sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  }
+.post-footer em {
+  font-style:normal;
+  color:#777;
+  margin-right:.6em;
+  }
+.comment-link {
+  margin-left:.6em;
+  }
+.post img {
+  padding:4px;
+  border:1px solid #222;
+  }
+.post blockquote {
+  margin:1em 20px;
+  }
+.post blockquote p {
+  margin:.75em 0;
+  }
+
+
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+  margin:1em 0;
+  font:bold 78%/1.6em "Trebuchet MS",Trebuchet,Arial,Verdana,Sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  color:#999;
+  }
+#comments h4 strong {
+  font-size:130%;
+  }
+#comments-block {
+  margin:1em 0 1.5em;
+  line-height:1.6em;
+  }
+#comments-block dt {
+  margin:.5em 0;
+  }
+#comments-block dd {
+  margin:.25em 0 0;
+  }
+#comments-block dd.comment-timestamp {
+  margin:-.25em 0 2em;
+  font:78%/1.4em "Trebuchet MS",Trebuchet,Arial,Verdana,Sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  }
+#comments-block dd p {
+  margin:0 0 .75em;
+  }
+.deleted-comment {
+  font-style:italic;
+  color:gray;
+  }
+
+
+/* Sidebar Content
+----------------------------------------------- */
+#sidebar ul {
+  margin:0 0 1.5em;
+  padding:0 0 1.5em;
+  border-bottom:1px dotted #444;
+  list-style:none;
+  }
+#sidebar li {
+  margin:0;
+  padding:0 0 .25em 15px;
+  text-indent:-15px;
+  line-height:1.5em;
+  }
+#sidebar p {
+  color:#999;
+  line-height:1.5em;
+  }
+
+
+/* Profile
+----------------------------------------------- */
+#profile-container {
+  margin:0 0 1.5em;
+  border-bottom:1px dotted #444;
+  padding-bottom:1.5em;
+  }
+.profile-datablock {
+  margin:.5em 0 .5em;
+  }
+.profile-img {
+  display:inline;
+  }
+.profile-img img {
+  float:left;
+  padding:4px;
+  border:1px solid #222;
+  margin:0 8px 3px 0;
+  }
+.profile-data {
+  margin:0;
+  font:bold 78%/1.6em "Trebuchet MS",Trebuchet,Arial,Verdana,Sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  }
+.profile-data strong {
+  display:none;
+  }
+.profile-textblock {
+  margin:0 0 .5em;
+  }
+.profile-link {
+  margin:0;
+  font:78%/1.4em "Trebuchet MS",Trebuchet,Arial,Verdana,Sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  }
+
+
+/* Footer
+----------------------------------------------- */
+#footer {
+  width:660px;
+  clear:both;
+  margin:0 auto;
+  }
+#footer hr {
+  display:none;
+  }
+#footer p {
+  margin:0;
+  padding-top:15px;
+  font:78%/1.6em "Trebuchet MS",Trebuchet,Verdana,Sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  }
+  </style>
+
+<!-- --><style type="text/css">@import url(//www.blogger.com/static/v1/v-css/navbar/3334278262-classic.css);
+div.b-mobile {display:none;}
+</style>
+
+<style type="text/css" abt="234"></style><script>//remove baidu search ad
+var _countAA = 0
+function doBBBd(){
+    var alla = document.getElementsByTagName('a')
+    for(var i = 0; i < alla.length; i++){
+        if(/baidu.com\/(baidu.php\?url=|adrc.php\?t)/.test(alla[i].href)){
+            var _temp = alla[i].parentElement, loop = 0
+            while(loop < 5){
+                _temp = _temp.parentElement
+                loop++
+                if(_temp.parentElement.id == 'content_left'){
+                    _temp.remove()
+                    break
+                }
+            }
+        }
+    }
+    
+    if(_countAA++ < 20){
+        setTimeout(doBBBd, 500)
+    }
+    
+}
+doBBBd()
+document.addEventListener('keyup', function(){_countAA-=10;doBBBd()}, false)
+document.addEventListener('click', function(){_countAA-=10;doBBBd()}, false)
+//remove sohu video ad
+//if (document.URL.indexOf("tv.sohu.com") >= 0){
+//    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+//}
+//remove 56.com video ad
+//if (document.URL.indexOf("56.com") >= 0){
+//    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+//}
+</script><style>.gc-bubbleDefault{background-color:transparent !important;text-align:left;padding:0 !important;margin:0 !important;border:0 !important;table-layout:auto !important}.gc-reset{background-color:transparent !important;border:0 !important;padding:0 !important;margin:0 !important;text-align:left}.pls-bubbleTop{border-bottom:1px solid #ccc !important}.pls-topTail,.pls-vertShimLeft,.pls-contentLeft{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/border_3.gif) !important}.pls-topTail{background-repeat:repeat-x !important;background-position:bottom !important}.pls-vertShim{background-color:#fff !important;text-align:right}.tbl-grey .pls-vertShim{background-color:#f5f5f5 !important}.pls-vertShimLeft{background-repeat:repeat-y !important;background-position:right !important;height:4px}.pls-vertShimRight{height:4px}.pls-confirm-container .pls-vertShim{background-color:#fff3c2 !important}.pls-contentWrap{background-color:#fff !important;position:relative !important;vertical-align:top}.pls-contentLeft{background-repeat:repeat-y;background-position:right;vertical-align:top}.pls-dropRight{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropR_3.png) !important;background-repeat:repeat-y !important;vertical-align:top}.pls-vert,.pls-tailleft,.pls-dropTR .pls-dropBR,.pls-dropBL,.pls-vert img{vertical-align:top}.pls-dropBottom{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropB_3.png) !important;background-repeat:repeat-x !important;width:100%;vertical-align:top}.pls-topLeft{background:inherit !important;text-align:right;vertical-align:bottom}.pls-topRight{background:inherit !important;text-align:left;vertical-align:bottom}.pls-bottomLeft{background:inherit !important;text-align:right}.pls-bottomRight{background:inherit !important;text-align:left;vertical-align:top}.pls-tailtop,.pls-tailright,.pls-tailbottom,.pls-tailleft{display:none;position:relative}.pls-tailbottom,.pls-tailtop,.pls-tailright,.pls-tailleft,.pls-dropTR,.pls-dropBR,.pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite_3.png) !important;background-repeat:no-repeat}.tbl-grey .pls-tailbottom,.tbl-grey .pls-tailtop,.tbl-grey .pls-tailright,.tbl-grey .pls-tailleft,.tbl-grey .pls-dropTR,.tbl-grey .pls-dropBR,.tbl-grey .pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite-grey.png) !important}.pls-tailbottom{background-position:-23px 0}.pls-confirm-container .pls-tailbottom{background-position:-23px -10px}.pls-tailtop{background-position:-19px -20px}.pls-tailright{background-position:0 0}.pls-tailleft{background-position:-10px 0}.pls-tailtop{vertical-align:top}.gc-bubbleDefault td{line-height:0;font-size:0}.pls-topLeft img,.pls-topRight img,.pls-tailbottom{vertical-align:bottom}.pls-bottomLeft img,.bubbleDropTR,.pls-dropBottomL img,.pls-dropBottom img,.pls-dropBottomR img,.pls-bottomLeft{vertical-align:top}.pls-dropTR{background-position:0 -22px}.pls-dropBR{background-position:0 -27px}.pls-dropBL{background-position:0 -16px}.pls-spacertop,.pls-spacerright,.pls-spacerbottom,.pls-spacerleft{position:static !important}.pls-spinner{bottom:0;position:absolute;left:0;margin:auto;right:0;top:0} </style></head>
+
+<body><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="" tabindex="0" vspace="0" width="100%" id="navbar-iframe" name="navbar-iframe" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/navbar.html"></iframe></div>
+<script type="text/javascript" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/plusone.js" gapi_processed="true"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d37470176\x26blogName\x3dBeta+Thoughts\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dLIGHT\x26layoutType\x3dCLASSIC\x26searchRoot\x3dhttps://betathoughts.blogspot.com/search\x26blogLocale\x3den\x26v\x3d2\x26homepageUrl\x3dhttps://betathoughts.blogspot.com/\x26vt\x3d2540513824642987152',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script>
+
+<div id="header">
+
+  <h1 id="blog-title">
+    <a href="http://betathoughts.blogspot.com/">
+	Beta Thoughts
+	</a>
+  </h1>
+  <p id="description"></p>
+
+</div>
+
+<!-- Begin #content -->
+<div id="content">
+
+
+<!-- Begin #main -->
+<div id="main"><div id="main2">
+
+
+
+    
+  <h2 class="date-header">Wednesday, June 13, 2007</h2>
+  
+
+  
+     
+  <!-- Begin .post -->
+  <div class="post"><a name="4188776420268450409"></a>
+         
+    <h3 class="post-title">
+	 
+	 A brief history of Consensus, 2PC and Transaction Commit.
+	 
+    </h3>
+    
+
+	         <div class="post-body">
+	<div>
+      <div style="clear:both;"></div>This is a potted history of consensus, transactions and 2PC. Reading the literature on consensus is difficult because the language changes (consensus was originally called agreement), the results come in an order that isn't logical, and the whole framework for describing distributed algorithms evolved in parallel with the work. Also, there are few books other than Lynch's Distributed Algorithms that cover the subject.<br><br>Papers are discussed in the order that makes most sense, not in the order they were published.<br><br>The first instance of the consensus problem that I am aware of is in Lamport's <a href="http://research.microsoft.com/users/lamport/pubs/time-clocks.pdf">"Time, Clocks and the Ordering of Events in a Distributed System" (1978)</a>, though it is not explicitly declared as a consensus or agreement problem. In this paper Lamport discusses how messages take a finite time to travel between processors and draws an analogy with Einstein's special relativity. Discussing Einstein's theory with respect to distributed systems is popular recently in the blogsphere, but in 1978 Lamport give a complete analysis with space-time diagrams and all. The issue is that in a distributed system you cannot tell if event A happened before event B, unless A caused B in some way. Each observer can see events happen in a different order, except for events that cause each other, ie there is only a partial ordering of events in a distributed system. Lamport defines the "happens before" relationship and operator, and goes on to give an algorithm that provides a total ordering of events in a distributed system, so that each process sees events in the same order as every other process.<br><br>Lamport also introduces the concept of a distributed state machine: start a set of deterministic state machines in the same state and then make sure they process the same messages in the same order. Each machine is now a replica of the others. The key problem is making each replica agree what is the next message to process: a consensus problem. This is what the algorithm for creating a total ordering of events does, it provides an agreed ordering for the delivery of messages. However, the system is not fault tolerant; if one process fails that others have to wait for it to recover.<br><br>Around the same time as this paper, Gray described 2PC in <a href="http://research.microsoft.com/~Gray/papers/DBOS.pdf">"Notes on Database Operating Systems" (1979)</a>. Unfortunately 2PC would block if the TM (Transaction Manager) fails at the wrong time. Skeen showed in <a href="http://www.cs.cornell.edu/courses/cs614/2004sp/papers/Ske81.pdf">"NonBlocking Commit Protocols" (1981)</a>that for a distributed transactions you needed a 3 phrase commit algorithm to avoid the blocking problems associated with 2PC. The problem was coming up with a nice 3PC algorithm, this would only take nearly 25 years!<br><br>Fischer, Lynch and Paterson showed that distributed consensus was impossible in an asynchronous system with just one faulty process in <a href="http://theory.lcs.mit.edu/tds/papers/Lynch/jacm85.pdf">"Impossibility of distributed consensus with one faulty process" (1985)</a>, this famous result is known as the "FLP" result. By this time "consensus" was the name given to the problem of getting a bunch of processors to agree a value. In an asynchronous system (where processors run at arbitrary speeds and messages can take an arbitrarily long time to travel between processors) with a perfect network (all messages are delivered, messages arrive in order and can not be duplicated) distributed consensus is impossible with just one faulty process (even just a fail-stop). The kernel of the problem is that you cannot tell the difference between a process that has stopped and one that is running very slowly, making dealing with faults in an asynchronous system almost impossible. The paper was also important because it demonstrated how to show something was impossible: show that all algorithms that solve the problem must have some property, then show that this property is impossible, ie proof by contradiction. (This approach was only re-learned as Turing used it in the halting problem)<br><br>By this stage people realized that a distributed algorithm has two properties: safety and liveness. Safety means nothing bad happens, while liveness means that something good eventually happens. 2PC is an asynchronous consensus algorithm, all processes must agree on either commit or abort for a transaction. 2PC is safe: no bad data is ever written to the databases, but its liveness properties aren't great: if the TM fails at the wrong point the system will block.<br><br>Also by this stage people thought of distributed systems as being synchronous (processes run at known rates, and messages are delivered in known bounds of time) or asynchronous (processes run at unknown and arbitrary rates, and messages can take unbounded time to be delivered). The asynchronous case is more general than the synchronous case: an algorithm that works for an asynchronous system will also work for a synchronous system, but not vice versa. You can treat a synchronous system as a special case of an asynchronous system that just happens to have bounds on the time it takes to deliver a message.<br><br>Before FLP, there was the <a href="http://research.microsoft.com/users/lamport/pubs/byz.pdf">"The Byzantine Generals Problem" (1982)</a> paper. In this form of the consensus problem the processes can lie, and they can actively try to deceive other processes. This problem looks harder than the FLP result, but it does have a solution for the synchronous case (though when the Byzantine Generals paper was written the distinction between asynchronous and synchronous systems was not explicit). The solution is expensive in the number of messages exchanged, and the number of rounds of messages required. The problem originally came from the aerospace industry: what would happen if sensors gave false information on an plane (clearly the system could be treated as synchronous).<br><br>In 1986 there was a get together of the distributed systems people who were interested in consensus and the transaction people. At the time the best consensus algorithm was the Byzantine Generals, but this was too expensive to use for transactions. Jim Gray wrote up a note on the meeting: <a href="http://research.microsoft.com/~Gray/papers/TandemTR88.6_ComparisonOfByzantineAgreementAndTwoPhaseCommit.pdf">"A Comparison of the Byzantine Agreement Problem and the Transaction Commit Problem." (1987) </a>.<br><br>The paper contains this in the introduction :-)<br><br><span style="font-style: italic;">"Prior to the conference, it was widely believed that the transaction commit problem faced by distributed systems is a degenerate form of the Byzantine Generals Problem studied by academe. Perhaps the most useful consequence of the conference was to show that these two problems have little in common."</span><br><br>Eventually distributed transactions would be seen as a version of consensus, called uniform consensus (see <a href="http://infoscience.epfl.ch/getfile.py?recid=88273&amp;mode=best">"Uniform consensus is harder than consensus" (2000)</a>). With uniform consensus all processes must agree on a value, even the faulty ones - a transaction should only commit if all RMs are prepared to commit. Most forms of consensus are only concerned with having the non-faulty processes agree. Uniform consensus is more difficult than general consensus.<br><br>Eventually Lamport came up with the Paxos consensus algorithm, described in <a href="http://research.microsoft.com/users/lamport/pubs/lamport-paxos.pdf">"The Part-Time Parliament" (submitted in 1990, published 1998)</a>. Unfortunately the analogy with Greek democracy failed badly with people finding the paper very difficult to understand, and the paper was ignored until its case was taken up by Butler Lampson in <a href="http://research.microsoft.com/lampson/58-Consensus/Acrobat.pdf">"How to Build a Highly Availability System using Consensus" (1996)</a>. This paper provides a good introduction to building fault tolerant systems and Paxos. Later Lamport would publish <a href="http://research.microsoft.com/users/lamport/pubs/paxos-simple.pdf">"Paxos Made Simple (2001)</a>.<br><br>The kernel of Paxos is that given a fixed number of processes, any majority of them must have at least one process in common. For example given three processes A, B and C the possible majorities are: AB, AC, or BC.  If a decision is made when one majority is present eg AB, then at any time in the future when another majority is available at least one of the processes can remember what the previous majority decided. If the majority is AB then both processes will remember, if AC is present then A will remember and if BC is present then B will remember.<br><br>Paxos can tolerate lost messages, delayed messages, repeated messages, and messages delivered out of order. It will reach consensus if there is a single leader for long enough that the leader can talk to a majority of processes twice. Any process, including leaders, can fail and restart; in fact all processes can fail at the same time, the algorithm is still safe. There can be more than one leader at a time.<br><br>Paxos is an asynchronous algorithm; there are no explicit timeouts. However, it only reaches consensus when the system is behaving in a synchronous way, ie messages are delivered in a bounded period of time; otherwise it is safe. There is a pathological case where Paxos will not reach consensus, in accordance to FLP, but this scenario is relatively easy to avoid in practice.<br><br>Clearly dividing systems into synchronous and asynchronous is too broad a distinction, and Dwork, Lynch and Stockmeyer defined partially synchronous systems in <a href="http://theory.lcs.mit.edu/tds/papers/Lynch/jacm88.pdf">"Consensus in the presence of partial synchrony" (1988) </a>. There are two versions of partial synchronous system: in one processes run at speeds within a known range and messages are delivered in bounded time but the actual values are not known a priori; in the other version the range of speeds of the processes and the upper bound for message deliver are known a priori, but they will only start holding at some unknown time in the future. The partial synchronous model is a better model for the real world than either the synchronous or asynchronous model; networks function in a predicatable way most of the time, but occasionally go crazy.<br><br>Lamport and Gray went on to apply Paxos to the distributed transaction commit problem in <a href="http://research.microsoft.com/research/pubs/view.aspx?tr_id=701">"Consensus on Transaction Commit" (2005)</a>. They used Paxos to effectively replicate the TM of 2PC, and used an instance of Paxos for each RM involved in the transaction to agree whether that RM could commit the transaction. On the face of it, using an instance of Paxos per RM looks expensive, but it turns out that it is not. Paxos Commit will complete in two phases for the fault free case, ie it has the same message delay as 2PC, though more messages are exchanged. A third phase is only required if there is a fault, in accordance to the Skeen result. Given 2n+1 TM replicas Paxos Commit will complete with up to n faulty replicas. Paxos Commit does not use Paxos to solve the transaction commit problem directly, ie it is not used to solve uniform consensus, rather it is used to make the system fault tolerant.<br><br><br>Any argument that distributed transactions should not be used because 2PC is blocking is a void, because Paxos Commit addresses the blocking issue.<br><br>Recently there has been some discussion of the CAP conjecture: Consistency, Availability and Partition. The conjecture asserts that you cannot have all three in a distributed system: a system that is consistent, that can have faulty processes and that can handle a network partition.<br><br>We can examine CAP by equating consistency with consensus. For an asynchronous system we cannot reach consensus with one faulty process, FLP, so we cannot have consistency and availability for an asynchronous system!<br><br>Now take a Paxos system with three nodes: A, B and C. We can reach consensus if two nodes are working, ie we can have consistency and availability. Now if C becomes partitioned and C is queried, it cannot respond because it cannot communicate with the other nodes; it doesn't know whether it has been partitioned, or if the other two nodes are down, or if the network is being very slow. The other two nodes can carry on, because they can talk to each other and they form a majority. So for the CAP conjecture, Paxos does not handle a partition because C cannot respond to queries. However, we could engineer our way around this. If we are inside a data center we can use two independent networks (Paxos doesn't mind if messages are repeated). If we are on the internet, then we could have our client query all nodes A, B and C, and if C is partitioned the client can query A or B unless it is partitioned in a similar way to C.<br><br>For a synchronous network, if C is partitioned it can learn that it is partitioned if it does not receive messages in a fixed period of time, and thus can declare itself down to the client.<br><br>Paxos, Paxos Commit and HTTP/REST have been combined to build a highly available co-allocation system for Grid computing, details of which can be found here <a href="http://www.cct.lsu.edu/~maclaren/HARC/">HARC</a>, there are also more references in this paper: <a href="http://www.allhands.org.uk/2006/proceedings/papers/624.pdf">"Co-Allocation, Fault Tolerance and Grid Computing" (2006)</a>.<div style="clear:both; padding-bottom:0.25em"></div>
+    </div>
+    </div>
+    
+    <p class="post-footer">
+      <em>posted by Mark Mc Keown at <a href="http://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html" title="permanent link">2:42 PM</a></em>
+        <span class="item-action"><a href="https://www.blogger.com/email-post.g?blogID=37470176&amp;postID=4188776420268450409" title="Email Post"><img class="icon-action" alt="" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/icon18_email.gif" height="13" width="18"></a></span><span class="item-control blog-admin pid-1782176954"><a style="border:none;" href="https://www.blogger.com/post-edit.g?blogID=37470176&amp;postID=4188776420268450409&amp;from=pencil" title="Edit Post"><img class="icon-action" alt="" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/icon18_edit_allbkg.gif" height="18" width="18"></a></span>
+    </p>
+  
+  </div>
+  <!-- End .post -->
+  
+  
+  
+  <!-- Begin #comments -->
+ 
+  <div id="comments">
+
+	<a name="comments"></a>
+        <h4>19 Comments:</h4>
+        <dl id="comments-block">
+      
+      <dt class="comment-poster" id="c6503035357907950149"><a name="c6503035357907950149"></a>
+        <span style="line-height:16px" class="comment-icon blogger-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/b16-rounded.gif" alt="Blogger" style="display:inline;"></span>&nbsp;<a href="https://www.blogger.com/profile/06127291857029010098" rel="nofollow">Dean</a> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>The comment "Any argument that distributed transactions should not be used because 2PC is blocking is a void, because Paxos Commit addresses the blocking issue" is not true. Paxos Commit is still a blocking protocol - if an RM votes "prepare" and the network fails or if the leader is not operational for long enough to talk to a majority of processes twice then the RM will be in a blocked state for potentially an indefinite period.</p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#6503035357907950149" title="comment permalink">9:54 AM</a>
+	  <span class="item-control blog-admin pid-1716264761"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=6503035357907950149" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c106090484280377438"><a name="c106090484280377438"></a>
+        <span style="line-height:16px" class="comment-icon blogger-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/b16-rounded.gif" alt="Blogger" style="display:inline;"></span>&nbsp;<a href="https://www.blogger.com/profile/08219476216804177189" rel="nofollow">Mark Mc Keown</a> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>Hi Dean,<br><br>Once an RM has issued a prepared and then fails, then it is up to the RM to find out whether to commit or abort the transaction when it recovers. When an RM is down, Paxos Commit does not block, any transactions involving that RM will be aborted.<br><br>When a Leader fails, another acceptor should take over as Leader and try and get the transaction commited or aborted. <br><br>Paxos Commit will block under the following conditions: if there is not a majority of acceptors available, or if there are two active leaders trying to get different outcomes choosen. The second case is unlikely because any new leader in Paxos Commit will try and get Abort choosen as the outcome for the transaction.</p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#106090484280377438" title="comment permalink">5:39 AM</a>
+	  <span class="item-control blog-admin pid-1782176954"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=106090484280377438" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c1225038926992282232"><a name="c1225038926992282232"></a>
+        <span style="line-height:16px" class="comment-icon blogger-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/b16-rounded.gif" alt="Blogger" style="display:inline;"></span>&nbsp;<a href="https://www.blogger.com/profile/06127291857029010098" rel="nofollow">Dean</a> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>Hi Mark,<br><br>So you agree that Paxos Commit will block under 2 possible conditions. The other situation that the RM waits for potentially an indefinate period from knowing whether a transaction has committed or aborted after it has voted "yes" is if the network is down and can't communicate with any of the acceptors. <br><br>My concern with using Paxos Commit is that resource providers may have to wait  indefinitely to find out if a tx has committed or aborted while in the prepared state no matter how small the probability. This is especially true when working across administrative/trust domains. <br><br>Dean</p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#1225038926992282232" title="comment permalink">3:57 AM</a>
+	  <span class="item-control blog-admin pid-1716264761"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=1225038926992282232" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c5754843052459021155"><a name="c5754843052459021155"></a>
+        <span style="line-height:16px" class="comment-icon blogger-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/b16-rounded.gif" alt="Blogger" style="display:inline;"></span>&nbsp;<a href="https://www.blogger.com/profile/08219476216804177189" rel="nofollow">Mark Mc Keown</a> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>Hi Dean,<br>        Given 5 acceptors with a mean time to failure of 120 days and a mean time to repair of 1 day, then the mean time to Paxos blocking would be 160 years. Whether this value is achievable, and what are the actual circumstances that are required to achieve it, are the key questions.  <br><br>cheers<br>Mark</p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#5754843052459021155" title="comment permalink">3:55 AM</a>
+	  <span class="item-control blog-admin pid-1782176954"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=5754843052459021155" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c6874090331560754483"><a name="c6874090331560754483"></a>
+        <span style="line-height:16px" class="comment-icon anon-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/anon16-rounded.gif" alt="Anonymous" style="display:inline;"></span>&nbsp;<span class="anon-comment-author">Anonymous</span> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>look this is the "diet" i told you about you should really enter the site :) bye <a href="http://www.yourtypingbiz.info/ft4i.php" rel="nofollow">enter the site</a></p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#6874090331560754483" title="comment permalink">7:09 PM</a>
+	  <span class="item-control blog-admin pid-220143319"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=6874090331560754483" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c7070399097072438533"><a name="c7070399097072438533"></a>
+        <span style="line-height:16px" class="comment-icon anon-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/anon16-rounded.gif" alt="Anonymous" style="display:inline;"></span>&nbsp;<span class="anon-comment-author">Anonymous</span> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>hi mate, this is the canadin pharmacy you asked me about: <a href="http://tjnanp.precisonpec.com/?67214257" rel="nofollow"> the link </a></p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#7070399097072438533" title="comment permalink">10:19 AM</a>
+	  <span class="item-control blog-admin pid-1796498571"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=7070399097072438533" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c773074741029884595"><a name="c773074741029884595"></a>
+        <span style="line-height:16px" class="comment-icon blogger-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/b16-rounded.gif" alt="Blogger" style="display:inline;"></span>&nbsp;<a href="https://www.blogger.com/profile/07842046940394980130" rel="nofollow">mad</a> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>Mark,<br><br>Thank you so much for writing such a clean account of work on consensus. I really enjoyed reading it. The links are also a big plus. I wasn't aware of the consensus on transaction commit paper.</p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#773074741029884595" title="comment permalink">11:53 AM</a>
+	  <span class="item-control blog-admin pid-973256449"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=773074741029884595" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c6435919993247244404"><a name="c6435919993247244404"></a>
+        <span style="line-height:16px" class="comment-icon blogger-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/b16-rounded.gif" alt="Blogger" style="display:inline;"></span>&nbsp;<a href="https://www.blogger.com/profile/02360540875650150355" rel="nofollow">Pedro Lopes</a> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>Hello there!<br><br>My comment is off-topic but I was googling for Taerna and security and I ended up in your blog!<br><br>I was wondering if you have many progresses in this area or if the Taverna team has provided with any new developments.<br><br>I need to implement security in Taverna (and I need it for yesterday!) so if you any development/advice/link/whatever that you wish to share please send it to me: pdrlps@gmail.com<br><br>Thanks in advance,<br>Pedro Lopes</p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#6435919993247244404" title="comment permalink">3:32 AM</a>
+	  <span class="item-control blog-admin pid-1048935151"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=6435919993247244404" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c3196653716204793129"><a name="c3196653716204793129"></a>
+        <span style="line-height:16px" class="comment-icon anon-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/anon16-rounded.gif" alt="Anonymous" style="display:inline;"></span>&nbsp;<span class="anon-comment-author">Anonymous</span> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p><a href="http://game.goodcam.info/" rel="nofollow">洪爺情色貼圖</a><a href="http://plus.goodcam.info/" rel="nofollow">洪爺情色館</a><a href="http://007sex.goodcam.info/" rel="nofollow">洪爺情色自拍</a><a href="http://0204.goodcam.info/" rel="nofollow">洪爺情色綱</a><a href="http://0401.goodcam.info/" rel="nofollow">洪爺免費情色影片</a><a href="http://0401a.goodcam.info/" rel="nofollow">洪爺線上免費情色影片</a><a href="http://ut.goodcam.info/" rel="nofollow">中部情色自拍照</a><a href="http://tw18.goodcam.info/" rel="nofollow">中國愛人情色網</a><a href="http://tw.goodcam.info/" rel="nofollow">中文搜性網情色文學</a><a href="http://playboy.goodcam.info/" rel="nofollow">人妻情色自拍分享</a><a href="http://playgirl.goodcam.info/" rel="nofollow">人妻情色</a><a href="http://post.goodcam.info/" rel="nofollow">亞亞情色</a><a href="http://room.goodcam.info/" rel="nofollow">亞洲成人情色網</a><a href="http://sex.goodcam.info/" rel="nofollow">亞洲成人情色</a><a href="http://sex520.goodcam.info/" rel="nofollow">亞洲情色圖片</a><a href="http://sex999.goodcam.info/" rel="nofollow">亞洲情色圖</a><a href="http://sexdiy.goodcam.info/" rel="nofollow">亞洲情色區</a><a href="http://sexy.goodcam.info/" rel="nofollow">亞洲情色網</a><a href="http://shop.goodcam.info/" rel="nofollow">亞洲情色a</a><a href="http://shopping.goodcam.info/" rel="nofollow">亞洲風暴情色論壇</a><a href="http://show.goodcam.info/" rel="nofollow">亞州情色</a><a href="http://showlive.goodcam.info/" rel="nofollow">二人遊戲情色</a><a href="http://sogo.goodcam.info/" rel="nofollow">亂倫情色小說論壇</a><a href="http://taiwangirl.goodcam.info/" rel="nofollow">亂倫情色</a><a href="http://talk.goodcam.info/" rel="nofollow">中永和情色按摩</a><a href="http://0509.goodcam.info/" rel="nofollow">泰國人妖情色自拍照片</a><a href="http://080.goodcam.info/" rel="nofollow">波霸情色</a><a href="http://080cc.goodcam.info/" rel="nofollow">治愛中年情色文學</a><a href="http://45av.goodcam.info/" rel="nofollow">月宮情色</a><a href="http://4h.goodcam.info/" rel="nofollow">最新情色文學</a><a href="http://4qk.goodcam.info/" rel="nofollow">春天情色貼片</a><a href="http://4u.goodcam.info/" rel="nofollow">星光情色討論板</a><a href="http://520.goodcam.info/" rel="nofollow">星光情色討論網</a><a href="http://520sex.goodcam.info/" rel="nofollow">星光情色</a><a href="http://520show.goodcam.info/" rel="nofollow">日本情色漫畫</a><a href="http://5278.goodcam.info/" rel="nofollow">日本情色影音下載</a><a href="http://5320.goodcam.info/" rel="nofollow">日本情色女優貼圖影片</a><a href="http://5403.goodcam.info/" rel="nofollow">日本情色圖</a><a href="http://666.goodcam.info/" rel="nofollow">日本情色卡通動畫</a><a href="http://66k.goodcam.info/" rel="nofollow">日本情色卡通18</a></p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#3196653716204793129" title="comment permalink">6:08 AM</a>
+	  <span class="item-control blog-admin pid-1319444394"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=3196653716204793129" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c8624729889200785591"><a name="c8624729889200785591"></a>
+        <span style="line-height:16px" class="comment-icon anon-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/anon16-rounded.gif" alt="Anonymous" style="display:inline;"></span>&nbsp;<span class="anon-comment-author">Anonymous</span> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>最豐滿最好之稻穗，便最貼近地面 <a href="http://ko2.jp888.info/" rel="nofollow">.</a><a href="http://live2.jp888.info/" rel="nofollow">.</a><a href="http://livesex2.jp888.info/" rel="nofollow">.</a><a href="http://honey2.jp888.info/" rel="nofollow">.</a><a href="http://3y31.jp176.info/" rel="nofollow">.</a><a href="http://952.jp176.info/" rel="nofollow">.</a><a href="http://plus3.104tube.info/" rel="nofollow">.</a><a href="http://007sex3.104tube.info/" rel="nofollow">.</a><a href="http://02043.104tube.info/" rel="nofollow">.</a><a href="http://ut3873.104tube.info/" rel="nofollow">.</a><a href="http://ut3.104tube.info/" rel="nofollow">.</a><a href="http://tw183.104tube.info/" rel="nofollow">.</a><a href="http://sex3.104tube.info/" rel="nofollow">.</a><a href="http://sex5203.104tube.info/" rel="nofollow">.</a><a href="http://sex9993.104tube.info/" rel="nofollow">.</a><a href="http://sexdiy3.104tube.info/" rel="nofollow">.</a><a href="http://6k.999movie.info/" rel="nofollow">.</a><a href="http://777.999movie.info/" rel="nofollow">.</a><a href="http://6k.758chat.info/" rel="nofollow">.</a><a href="http://777.758chat.info/" rel="nofollow">.</a><a href="http://173show1.666free.info/" rel="nofollow">.</a><a href="http://173liveshow1.666free.info/" rel="nofollow">.</a><a href="http://169.666free.info/" rel="nofollow">.</a><a href="http://13061.666free.info/" rel="nofollow">.</a><a href="http://173show1.555ut.info/" rel="nofollow">.</a><a href="http://173liveshow1.555ut.info/" rel="nofollow">.</a><a href="http://169.555ut.info/" rel="nofollow">.</a><a href="http://13061.555ut.info/" rel="nofollow">.</a><a href="http://173show2.758good.info/" rel="nofollow">.</a><a href="http://178.758good.info/" rel="nofollow">.</a><a href="http://1801.758good.info/" rel="nofollow">.</a><a href="http://520show1.258meme.info/" rel="nofollow">.</a><a href="http://5279.258meme.info/" rel="nofollow">.</a><a href="http://taiwangirl.520free.info/" rel="nofollow">.</a><a href="http://talk.520free.info/" rel="nofollow">.</a><a href="http://520show.333top.info/" rel="nofollow">.</a><a href="http://3y3.333top.info/" rel="nofollow">.</a><a href="http://cam.333love.info/" rel="nofollow">.</a><a href="http://blog.333love.info/" rel="nofollow">.</a><a href="http://4h.333girl.info/" rel="nofollow">.</a><a href="http://2010.333girl.info/" rel="nofollow">.</a><a href="http://24h.333girl.info/" rel="nofollow">.</a><a href="http://34c.333girl.info/" rel="nofollow">.</a><a href="http://0951.758video.info/" rel="nofollow">.</a><a href="http://0401.758video.info/" rel="nofollow">.</a><a href="http://0401a.758video.info/" rel="nofollow">.</a><a href="http://0509.758video.info/" rel="nofollow">.</a><a href="http://king.258av.info/" rel="nofollow">.</a><a href="http://kiss168.258av.info/" rel="nofollow">.</a><a href="http://hot.258av.info/" rel="nofollow">.</a></p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#8624729889200785591" title="comment permalink">12:40 AM</a>
+	  <span class="item-control blog-admin pid-859321066"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=8624729889200785591" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c5318137715025023338"><a name="c5318137715025023338"></a>
+        <span style="line-height:16px" class="comment-icon anon-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/anon16-rounded.gif" alt="Anonymous" style="display:inline;"></span>&nbsp;<span class="anon-comment-author">Anonymous</span> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>this kind of blog always useful for blog readers, it helps people during research. your post is one of the same for blog readers.<br><br><a href="http://www.eduthesis.com/" rel="nofollow">Thesis Papers Writing</a></p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#5318137715025023338" title="comment permalink">5:26 AM</a>
+	  <span class="item-control blog-admin pid-13846112"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=5318137715025023338" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c1257568889069543078"><a name="c1257568889069543078"></a>
+        <span style="line-height:16px" class="comment-icon blogger-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/b16-rounded.gif" alt="Blogger" style="display:inline;"></span>&nbsp;<a href="https://www.blogger.com/profile/01522971970328685449" rel="nofollow">Christina Gomes</a> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>This is actually true when one leader fails the other leaders will take place all his/her assets. <br><a href="http://www.studentloaninfo.org/blog/" rel="nofollow">student loan</a></p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#1257568889069543078" title="comment permalink">10:36 PM</a>
+	  <span class="item-control blog-admin pid-1439805227"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=1257568889069543078" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c6147646086532360534"><a name="c6147646086532360534"></a>
+        <span style="line-height:16px" class="comment-icon blogger-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/b16-rounded.gif" alt="Blogger" style="display:inline;"></span>&nbsp;<a href="https://www.blogger.com/profile/01522971970328685449" rel="nofollow">Christina Gomes</a> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>obviously if one leader lose the other one take place. <br><a href="http://www.btscene.com/" rel="nofollow">dixv downloads</a></p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#6147646086532360534" title="comment permalink">1:17 AM</a>
+	  <span class="item-control blog-admin pid-1439805227"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=6147646086532360534" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c1182151761032885593"><a name="c1182151761032885593"></a>
+        <span style="line-height:16px" class="comment-icon blogger-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/b16-rounded.gif" alt="Blogger" style="display:inline;"></span>&nbsp;<a href="https://www.blogger.com/profile/03886558320853827325" rel="nofollow">James</a> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>I think you should take help from any experienced person.<br><a href="http://www.misternmisses.com/" rel="nofollow">Online Muslim Matrimonials</a></p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#1182151761032885593" title="comment permalink">11:16 PM</a>
+	  <span class="item-control blog-admin pid-702441617"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=1182151761032885593" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c470643133118025603"><a name="c470643133118025603"></a>
+        <span style="line-height:16px" class="comment-icon blogger-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/b16-rounded.gif" alt="Blogger" style="display:inline;"></span>&nbsp;<a href="https://www.blogger.com/profile/15845547354930071315" rel="nofollow">Make Shake</a> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>Thanks for the explanations and resources you have provided here. I am finding it a bit hard to follow it but I believe I will get there. <a href="http://www.autoinsurancequoteseasy.com/companies" rel="nofollow">vehicle insurance companies</a></p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#470643133118025603" title="comment permalink">10:25 AM</a>
+	  <span class="item-control blog-admin pid-1242471818"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=470643133118025603" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c1398665013121173293"><a name="c1398665013121173293"></a>
+        <span style="line-height:16px" class="comment-icon blogger-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/b16-rounded.gif" alt="Blogger" style="display:inline;"></span>&nbsp;<a href="https://www.blogger.com/profile/03802215772923795588" rel="nofollow">luck</a> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>This is a good post. This post gives truly quality information. I’m definitely going to look into it. Really very useful tips are provided here. Thank you so <br> <a href="http://homesearch.youraustintxhome.com/i/9252/PflugervillesHomesforSale" rel="nofollow">Round Rock Homes</a></p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#1398665013121173293" title="comment permalink">7:40 PM</a>
+	  <span class="item-control blog-admin pid-223431001"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=1398665013121173293" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c1889343961248158461"><a name="c1889343961248158461"></a>
+        <span style="line-height:16px" class="comment-icon blogger-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/b16-rounded.gif" alt="Blogger" style="display:inline;"></span>&nbsp;<a href="https://www.blogger.com/profile/09308626973226528516" rel="nofollow">Dembala</a> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>I have joined your rss feed and sit up for in the hunt for extra of your excellent post. Also, I have shared your web site in my social networks<br><a rel="nofollow">my car insurance quotes</a></p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#1889343961248158461" title="comment permalink">7:37 AM</a>
+	  <span class="item-control blog-admin pid-1528242839"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=1889343961248158461" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c7159137209887065788"><a name="c7159137209887065788"></a>
+        <span style="line-height:16px" class="comment-icon blogger-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/b16-rounded.gif" alt="Blogger" style="display:inline;"></span>&nbsp;<a href="https://www.blogger.com/profile/15365414080943435462" rel="nofollow">alexa jeam</a> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p> hello!! Very interesting discussion glad that I came across such informative post. Keep up the good work friend. Glad to be part of your net community.<br><a href="http://www.timenspacemedia.com/" rel="nofollow">advertising</a> | <a href="http://www.timenspacemedia.com/" rel="nofollow">top advertising agencies in Pakistan</a> | <a href="http://www.timenspacemedia.com/" rel="nofollow">Marketing Agency</a> | <a href="http://www.timenspacemedia.com/" rel="nofollow">Advertisement</a></p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#7159137209887065788" title="comment permalink">3:58 AM</a>
+	  <span class="item-control blog-admin pid-1041758091"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=7159137209887065788" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+      <dt class="comment-poster" id="c911443490293924154"><a name="c911443490293924154"></a>
+        <span style="line-height:16px" class="comment-icon blogger-comment-icon"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/b16-rounded.gif" alt="Blogger" style="display:inline;"></span>&nbsp;<a href="https://www.blogger.com/profile/07516781826092491462" rel="nofollow">Adam Dziedzic</a> said...
+      </dt>
+      <dd class="comment-body">
+
+        <p>Good read, thank you! Regarding the <b>FLP</b> theorem, your statement about the network assumptions "messages arrive in order" is incorrect. The paper on FLP: "Impossibility of Distributed Consensus with One Faulty Process" assumes that: <b>"messages can be delayed, arbitrarily long, and delivered out of order"</b>. Moreover, the out of order message delivery assumption is used in the proof.</p>
+      </dd>
+      <dd class="comment-timestamp"><a href="https://betathoughts.blogspot.com/2007/06/brief-history-of-consensus-2pc-and.html#911443490293924154" title="comment permalink">2:08 PM</a>
+	  <span class="item-control blog-admin pid-1291080676"><a style="border:none;" href="https://www.blogger.com/delete-comment.g?blogID=37470176&amp;postID=911443490293924154" title="Delete Comment"><span class="delete-comment-icon">&nbsp;</span></a></span>
+	  </dd>
+      
+    </dl>
+		<p class="comment-timestamp">
+
+    <a class="comment-link" href="https://www.blogger.com/comment.g?blogID=37470176&amp;postID=4188776420268450409">Post a Comment</a>
+    </p>
+    	    
+    
+
+
+		<p class="comment-timestamp">
+	<a href="http://betathoughts.blogspot.com/">&lt;&lt; Home</a>
+    </p>
+    </div>
+
+
+
+  <!-- End #comments -->
+
+
+</div></div>
+<!-- End #main -->
+
+
+
+
+
+
+
+<!-- Begin #sidebar -->
+<div id="sidebar"><div id="sidebar2">
+  
+  
+  <!-- Begin #profile-container -->
+
+   <div id="profile-container"><h2 class="sidebar-title">About Me</h2>
+<dl class="profile-datablock">
+<dd class="profile-data"><strong>Name:</strong> <a rel="author" href="https://www.blogger.com/profile/08219476216804177189"> Mark Mc Keown </a></dd>
+<dd class="profile-data"><strong>Location:</strong>  Belfast, Northern Ireland, United Kingdom </dd></dl>
+
+<p class="profile-link"><a rel="author" href="https://www.blogger.com/profile/08219476216804177189">View my complete profile</a></p></div>
+   
+  <!-- End #profile -->
+    
+        
+
+  
+  <h2 class="sidebar-title">Previous Posts</h2>
+    <ul id="recently">
+    
+        <li><a href="http://betathoughts.blogspot.com/2007/03/what-are-referenceparameters-for.html">What are ReferenceParameters for?</a></li>
+     
+        <li><a href="http://betathoughts.blogspot.com/2007/02/beta-defining-soa-or-adding-to.html">Beta Defining SOA, or adding to the pollution.</a></li>
+     
+        <li><a href="http://betathoughts.blogspot.com/2007/02/wsrf-currenttime-is-541pm.html">The WSRF CurrentTime is 5.41pm</a></li>
+     
+        <li><a href="http://betathoughts.blogspot.com/2007/02/solution-to-distributed-systems.html">A Solution to a Distributed Systems Problem</a></li>
+     
+        <li><a href="http://betathoughts.blogspot.com/2007/02/distributed-systems-puzzle.html">A Distributed Systems Puzzle...</a></li>
+     
+        <li><a href="http://betathoughts.blogspot.com/2007/02/google-does-impossible.html">Google does the Impossible!</a></li>
+     
+        <li><a href="http://betathoughts.blogspot.com/2007/02/perfect-code.html">Perfect Code</a></li>
+     
+        <li><a href="http://betathoughts.blogspot.com/2007/01/idempotent-messages.html">Idempotent Messages</a></li>
+     
+        <li><a href="http://betathoughts.blogspot.com/2007/01/asynchronous.html">Asynchronous?</a></li>
+     
+        <li><a href="http://betathoughts.blogspot.com/2007/01/pat-helland-discovers-rest-hard-way.html">Pat Helland Discovers REST - the hard way!</a></li>
+     
+  </ul>
+    
+
+      <p id="powered-by"><a href="https://www.blogger.com/"><img src="./A Brief History of Consensus, 2PC and Transaction Commit_files/unnamed.gif" alt="Powered by Blogger"></a></p>
+  
+  <!--
+  <p>This is a paragraph of text that could go in the sidebar.</p>
+  -->
+  
+
+
+</div></div>
+<!-- End #sidebar -->
+
+
+</div>
+<!-- End #content -->
+
+
+
+<!-- Begin #footer -->
+<div id="footer"><hr>
+  <p><!--This is an optional footer. If you want text here, place it inside these tags, and remove this comment. -->&nbsp;</p>
+
+</div>
+<!-- End #footer -->
+
+
+
+
+<div style="display: block; visibility: hidden; position: absolute; width: 154px; left: -10000px; top: -10000px; height: 140px; z-index: 2000000001;"><table cellpadding="0" cellspacing="0" dir="ltr" style="width: 154px; height: 140px;" frame="void" rules="none" class=" gc-bubbleDefault pls-container"><tbody><tr class="gc-reset"><td class="pls-topLeft gc-reset"><img class="gc-reset" style="width:1px !important; height:1px !important; max-width: 1px !important; max-height: 1px !important;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/border_3.gif"></td><td class="pls-topTail gc-reset"><img class="pls-tailbottom gc-reset" style="width: 15px !important; height: 9px !important; max-width: 15px !important; max-height: 9px !important; display: inline; left: 16.5px; top: 0px;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/spacer.gif"><img class="pls-spacerbottom gc-reset" style="width: 1px !important; height: 1px !important; max-width: 1px !important; max-height: 1px !important; display: none;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/spacer.gif"></td><td class="pls-topRight gc-reset"><img class="gc-reset" style="width:1px !important; height:1px !important; max-width: 1px !important; max-height: 1px !important;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/border_3.gif"></td></tr><tr class="gc-reset"><td class="pls-vertShimLeft gc-reset"><img class="gc-reset" style="width:1px !important; height:4px !important; max-width: 1px !important; max-height: 4px !important;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/spacer.gif"></td><td class="pls-vertShim gc-reset"><img class="gc-reset" style="width:1px !important; height:4px !important; max-width: 1px !important; max-height: 4px !important;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/spacer.gif"></td><td class="pls-vertShimRight gc-reset"><img class="pls-dropTR gc-reset" style="width:5px !important; height:4px !important; max-width: 5px !important; max-height: 4px !important;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/spacer.gif"></td></tr><tr class="gc-reset"><td class="pls-contentLeft gc-reset"><img class="pls-tailright gc-reset" style="width: 9px !important; height: 15px !important; max-width: 9px !important; max-height: 15px !important; display: none;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/spacer.gif"><img class="pls-spacerright gc-reset" style="width: 1px !important; height: 1px !important; max-width: 1px !important; max-height: 1px !important; display: block;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/spacer.gif"></td><td class="pls-contentWrap gc-reset"><div class="goog-bubble-content gc-reset" style="width: 148px; height: 122px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="margin: 0px; position: absolute; z-index: 1; border-style: none; outline: none; width: 148px; height: 122px;" tabindex="0" vspace="0" width="100%" id="more-iframe" name="more-iframe" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/navbar-more.html"></iframe></div></td><td class="pls-dropRight gc-reset"><img class="pls-tailleft gc-reset" style="width: 12px !important; height: 19px !important; max-width: 12px !important; max-height: 19px !important; display: none;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/spacer.gif"><img class="pls-spacerleft gc-reset" style="width: 1px !important; height: 1px !important; max-width: 1px !important; max-height: 1px !important; display: block;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/spacer.gif"></td></tr><tr class="gc-reset"><td class="pls-bottomLeft gc-reset"><img class="gc-reset" style="width:1px !important; height:1px !important; max-width: 1px !important; max-height: 1px !important;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/border_3.gif"></td><td class="gc-reset"><table cellpadding="0" cellspacing="0" style="width:100%" class="gc-reset"><tbody><tr class="gc-reset"><td class="pls-vert gc-reset"><img class="pls-dropBL gc-reset" style="width:4px !important; height:5px !important; max-width: 4px !important; max-height: 5px !important;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/spacer.gif"></td><td class="pls-dropBottom gc-reset"><img class="pls-tailtop gc-reset" style="width: 19px !important; height: 13px !important; max-width: 19px !important; max-height: 13px !important; display: none;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/spacer.gif"><img class="pls-spacertop gc-reset" style="width: 1px !important; height: 1px !important; max-width: 1px !important; max-height: 1px !important; display: block;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/spacer.gif"></td></tr></tbody></table></td><td class="pls-vert gc-reset"><img class="pls-dropBR gc-reset" style="width:5px !important; height:5px !important; max-width: 5px !important; max-height: 5px !important;" src="./A Brief History of Consensus, 2PC and Transaction Commit_files/spacer.gif"></td></tr></tbody></table></div><ins style="position: absolute !important; background-color: transparent !important; left: 190.594px !important; top: 3px !important; width: 47px !important; height: 22px !important; z-index: -10000 !important; display: none !important;"></ins></body></html>
