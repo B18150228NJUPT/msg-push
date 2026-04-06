@@ -43,6 +43,11 @@ public class App1 {
         return "hello world";
     }
 
+    @GetMapping("/health")
+    public String health() {
+        return "{\"status\":\"UP\",\"timestamp\":\"" + System.currentTimeMillis() + "\"}";
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(App1.class, args);
     }
