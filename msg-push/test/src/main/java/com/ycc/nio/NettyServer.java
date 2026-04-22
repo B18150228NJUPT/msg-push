@@ -8,6 +8,10 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.util.CharsetUtil;
+import io.netty.util.concurrent.GlobalEventExecutor;
+
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 基于 Netty 的 TCP 服务端示例。
@@ -33,6 +37,8 @@ import io.netty.util.CharsetUtil;
 public class NettyServer {
 
     private static final int PORT = 8080;
+    private static Channel serverChannel;
+    private static final Set<Channel> clientChannels = ConcurrentHashMap.newKeySet();
 
     public static void main(String[] args) throws Exception {
         // bossGroup：只负责接受新连接（单线程足够）
@@ -66,6 +72,7 @@ public class NettyServer {
 
             // 绑定端口并同步等待绑定成功
             ChannelFuture future = bootstrap.bind(PORT).sync();
+            serverChannel = future.channel();
             System.out.println("[NettyServer] Server started on port " + PORT);
 
             // 阻塞直到服务端 Channel 关闭
@@ -90,12 +97,14 @@ public class NettyServer {
         @Override
         public void channelActive(ChannelHandlerContext ctx) {
             System.out.println("[NettyServer] Client connected: " + ctx.channel().remoteAddress());
+            clientChannels.add(ctx.channel());
         }
 
         /** 客户端连接断开时触发 */
         @Override
         public void channelInactive(ChannelHandlerContext ctx) {
             System.out.println("[NettyServer] Client disconnected: " + ctx.channel().remoteAddress());
+            clientChannels.remove(ctx.channel());
         }
 
         /**
@@ -119,5 +128,23 @@ public class NettyServer {
                     + ctx.channel().remoteAddress() + ": " + cause.getMessage());
             ctx.close();
         }
+    }
+
+    public static void sendMessageToAll(String msg) {
+        for (Channel ch : clientChannels) {
+            if (ch.isActive()) {
+                ch.writeAndFlush(msg);
+            }
+        }
+    }
+
+    public static void sendMessage(Channel targetChannel, String msg) {
+        if (targetChannel != null && targetChannel.isActive()) {
+            targetChannel.writeAndFlush(msg);
+        }
+    }
+
+    public static Set<Channel> getClientChannels() {
+        return clientChannels;
     }
 }

@@ -35,6 +35,7 @@ public class NettyClient {
     private static final int PORT = 8080;
     /** 收到服务端回复的最大轮次，演示多轮交互 */
     private static final int MAX_ROUNDS = 3;
+    private static Channel channel;
 
     public static void main(String[] args) throws InterruptedException {
         EventLoopGroup group = new NioEventLoopGroup();
@@ -58,6 +59,7 @@ public class NettyClient {
 
             // 发起连接并同步等待
             ChannelFuture future = bootstrap.connect(HOST, PORT).sync();
+            channel = future.channel();
             System.out.println("[NettyClient] Connected to " + HOST + ":" + PORT);
 
             // 等待连接关闭（由 ClientHandler 在完成所有交互后主动关闭）
@@ -120,5 +122,17 @@ public class NettyClient {
             System.err.println("[NettyClient] Exception: " + cause.getMessage());
             ctx.close();
         }
+    }
+
+    public static void sendMessage(String msg) {
+        if (channel != null && channel.isActive()) {
+            channel.writeAndFlush(msg);
+        } else {
+            System.out.println("[NettyClient] Channel not available.");
+        }
+    }
+
+    public static Channel getChannel() {
+        return channel;
     }
 }
